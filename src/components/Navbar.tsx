@@ -7,10 +7,10 @@ function Navbar() {
                 Logo
             </div>
             <ul className="flex gap-11 text-[#3D3D3D] items-center text-[16px] ">
-                <li className="cursor-pointer">Home</li>
-                <li className="cursor-pointer">Shop</li>
-                <li className="cursor-pointer">Plant Care</li>
-                <li className="cursor-pointer">Blogs</li>
+                <li className="cursor-pointer">Главная</li>
+                <li className="cursor-pointer">Магазин</li>
+                <li className="cursor-pointer">Акции</li>
+                <li className="cursor-pointer">О нас</li>
             </ul>
             <div className="flex gap-7 items-center">
                 <span><IconSearch cursor="pointer" size={27} color="#3D3D3D" /></span>
