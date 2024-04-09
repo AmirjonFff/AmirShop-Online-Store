@@ -18,7 +18,7 @@ function CategoriesPrice() {
         <div className='p-3'>
             <Box>
                 <Slider
-                    sx={{ width: 220, color: "colLight", height: "5px" }}
+                    sx={{ width: 220, color: "#263e87", height: "5px" }}
                     getAriaLabel={() => 'Temperature range'}
                     value={value}
                     onChange={handleChange}
@@ -28,10 +28,10 @@ function CategoriesPrice() {
             </Box>
 
             <div className='text-[15px]'>
-                Price: <span className='text-colLight font-[700]'>${value[0]} - ${value[1]}</span>
+                Цена: <span className='text-colLight font-[700]'>${value[0]} - ${value[1]}</span>
             </div>
 
-            <button className='w-[90px] h-[35px] mt-6 rounded-[6px] bg-colLight text-white text-[16px]'>Filter</button>
+            <button className='w-[90px] h-[35px] mt-6 rounded-[6px] bg-colLight text-white text-[16px]'>Фильтр</button>
         </div>
     )
 }

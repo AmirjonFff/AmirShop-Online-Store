@@ -2,19 +2,19 @@
 import { useSelector } from 'react-redux';
 import CategoriesItem from './CategoriesItem';
 
-function CategoriesSize() {
+function CategoriesColor() {
     const sizeId = useSelector(({ shop }: any) => shop.sizeId);
     const item = [
         {
-            title: "Small",
+            title: "Черный",
             quantity: 119
         },
         {
-            title: "Medium",
+            title: "Белый",
             quantity: 86
         },
         {
-            title: "Large",
+            title: "Красный",
             quantity: 78
         },
     ]
@@ -28,4 +28,4 @@ function CategoriesSize() {
     )
 }
 
-export default CategoriesSize
+export default CategoriesColor

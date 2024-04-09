@@ -5,22 +5,18 @@ function Navbar() {
 
     const navData = [
         {
-            id: 1,
             name: 'Главная',
             path: '/'
         },
         {
-            id: 1,
             name: 'Магазин',
             path: '/shop'
         },
         {
-            id: 1,
             name: 'Акции',
             path: '/stock'
         },
         {
-            id: 1,
             name: 'О нас',
             path: '/about'
         }
@@ -28,8 +24,6 @@ function Navbar() {
     // const nameNav = useSelector(({show}) => show.nameNav)
     const location = useLocation();
     const isActive = location.pathname
-    console.log(isActive);
-
 
     return (
         <Container size="1200px">
@@ -39,7 +33,7 @@ function Navbar() {
                 </div>
                 <ul className="flex gap-11 text-[#3D3D3D] items-center text-[16px] translate-y-1">
                     {navData.map(nav =>
-                        <li className={`cursor-pointer ${isActive === nav.path && 'font-bold'}`}><Link to={nav.path}>{nav.name}</Link>
+                        <li key={nav.name} className={`cursor-pointer ${isActive === nav.path && 'font-bold'}`}><Link to={nav.path}>{nav.name}</Link>
                             {isActive === nav.path && <div className="h-[3px] bg-[#3a539d] w-full translate-y-6"></div>}</li>
                     )}
                 </ul>

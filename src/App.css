@@ -19,3 +19,7 @@
   display: block;
   object-fit: cover;
 }
+
+.myCard:hover .myPrice{
+  bottom: 5px;
+}
