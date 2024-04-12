@@ -1,6 +1,7 @@
 import { Button, Container } from "@mantine/core";
 import { IconBasket, IconLogin2, IconSearch } from "@tabler/icons-react";
 import { Link, useLocation } from "react-router-dom";
+import Logo from "./Logo";
 function Navbar() {
 
     const navData = [
@@ -29,7 +30,7 @@ function Navbar() {
         <Container size="1200px">
             <div className="flex justify-between items-center border-b border-[#3a539d84] pb-6 pt-4">
                 <div className="cursor-pointer text-xl font-bold">
-                    Logo
+                    <Logo />
                 </div>
                 <ul className="flex gap-11 text-[#3D3D3D] items-center text-[16px] translate-y-1">
                     {navData.map(nav =>
