@@ -4,7 +4,7 @@ import CategoriesColor from "./CategoriesColor"
 
 function Categories() {
     return (
-        <div className='w-[310px]'>
+        <div className='w-[310px] '>
             <div className='bg-colDull p-[14px_18px] text-[18px]'>
                 <span className='font-[700]'>Категории</span>
                 <CategoriesName />

@@ -17,7 +17,7 @@ interface IMyCard {
 
 export function MyCard({ title, price, image }: IMyCard) {
     return (
-        <Card shadow="sm" className='cursor-pointer myCard' padding="lg" radius="md" withBorder>
+        <Card shadow="sm" className='cursor-pointer myCard border-none' padding="lg" radius="md" withBorder>
             <Card.Section h={250} className='flex relative justify-center items-center p-1 bg-colDull'>
                 <img
                     className='max-w-full max-h-[100%] object-center'
