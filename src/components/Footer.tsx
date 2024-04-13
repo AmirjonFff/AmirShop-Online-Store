@@ -58,7 +58,9 @@ export function Footer() {
         <Container className={classes.footer} size={1200}>
             <footer className={`${classes.inner} border-[#3a539d84] border-t-[1px]`}>
                 <div className={classes.logo}>
-                    <Logo />
+                    <div className="cursor-pointer text-xl font-bold mb-4">
+                        <Logo />
+                    </div>
                     <Text size="xs" c="dimmed" className={classes.description}>
                         Освежите свой стиль! Интернет-магазин модной одежды для смелых и стильных.
                     </Text>

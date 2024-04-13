@@ -1,5 +1,6 @@
 import { Button, Container } from "@mantine/core";
-import { IconBasket, IconLogin2, IconSearch } from "@tabler/icons-react";
+import { Badge } from "@mui/material";
+import { IconLogin2, IconSearch, IconShoppingCart } from "@tabler/icons-react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
 function Navbar() {
@@ -40,7 +41,9 @@ function Navbar() {
                 </ul>
                 <div className="flex gap-7 items-center">
                     <span><IconSearch cursor="pointer" size={27} color="#3D3D3D" /></span>
-                    <span><IconBasket cursor="pointer" size={27} color="#3D3D3D" /></span>
+                    <Badge color="info" badgeContent={0} showZero>
+                        <IconShoppingCart cursor="pointer" size={27} color="#3D3D3D" />
+                    </Badge>
                     <Button leftSection={<IconLogin2 size={24} />} color="#3a539d" variant="filled">
                         Авторизоваться
                     </Button>
