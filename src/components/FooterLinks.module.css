@@ -1,7 +1,5 @@
 .footer {
-    margin-top: rem(30px);
-    padding-top: calc(var(--mantine-spacing-xl) * 1);
-    padding-bottom: calc(var(--mantine-spacing-xl) * 1);
+    margin-top: rem(60px);  
   }
   
   .logo {
@@ -24,6 +22,8 @@
   }
   
   .inner {
+    padding-top: calc(var(--mantine-spacing-xl) * 1.2);
+    padding-bottom: calc(var(--mantine-spacing-xl) * 1.2);
     display: flex;
     justify-content: space-between;
   

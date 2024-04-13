@@ -55,8 +55,8 @@ export function Footer() {
     });
 
     return (
-        <Container className={`${classes.footer} border-[#3a539d84] border-t-[1px]`} size={1200}>
-            <footer className={classes.inner}>
+        <Container className={classes.footer} size={1200}>
+            <footer className={`${classes.inner} border-[#3a539d84] border-t-[1px]`}>
                 <div className={classes.logo}>
                     <Logo />
                     <Text size="xs" c="dimmed" className={classes.description}>

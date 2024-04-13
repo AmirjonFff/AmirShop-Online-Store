@@ -1,12 +1,15 @@
 import { Button, Tabs } from '@mantine/core';
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleIsCategor } from '../store/slice/slice';
 
 export function SexTab() {
     const [activeTab, setActiveTab] = useState<string | null>('first');
-    const [open, setOpen] = useState(false)
+    const dispach = useDispatch()
+    const isCategor = useSelector(({ shop }: any) => shop.isCategor)
     const tagleIcon = () => {
-        setOpen(!open);
+        dispach(handleIsCategor(!isCategor))
     }
 
     const sexTab = [
@@ -26,7 +29,7 @@ export function SexTab() {
 
     return (
         <div className='flex justify-between'>
-            <Button onClick={tagleIcon} leftSection={open ? <IconX size={18} /> : <IconMenu2 size={18} />} variant="default">
+            <Button onClick={tagleIcon} leftSection={isCategor ? <IconX size={18} /> : <IconMenu2 size={18} />} variant="default">
                 Каталог товаров
             </Button>
             <Tabs className='w-[74%]' defaultValue="first" value={activeTab} onChange={setActiveTab}>
