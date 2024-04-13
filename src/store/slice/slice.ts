@@ -5,12 +5,14 @@ export interface CounterState {
   nameNav: string,
   itemId: number | null;
   sizeId: number | null;
+  isCategor: boolean;
 }
 
 const initialState: CounterState = {
   nameNav: '',
   itemId: 0,
   sizeId: 0,
+  isCategor: true
 }
 
 export const slice = createSlice({
@@ -26,9 +28,12 @@ export const slice = createSlice({
     handleSizeId: (state, action: PayloadAction<number>) => {
       state.itemId = action.payload;
     },
+    handleIsCategor: (state, action: PayloadAction<boolean>) => {
+      state.isCategor = action.payload;
+    },
   },
 })
 
-export const { SetNameNav, handleItemId } = slice.actions
+export const { SetNameNav, handleItemId, handleIsCategor } = slice.actions
 
 export default slice.reducer
