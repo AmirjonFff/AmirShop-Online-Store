@@ -12,7 +12,7 @@ const initialState: CounterState = {
   nameNav: '',
   itemId: 0,
   sizeId: 0,
-  isCategor: true
+  isCategor: false
 }
 
 export const slice = createSlice({
