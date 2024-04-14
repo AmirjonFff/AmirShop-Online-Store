@@ -1,8 +1,9 @@
 import { Button, Container } from "@mantine/core";
-import { Badge } from "@mui/material";
 import { IconLogin2, IconSearch, IconShoppingCart } from "@tabler/icons-react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
+
+
 function Navbar() {
 
     const navData = [
@@ -23,9 +24,9 @@ function Navbar() {
             path: '/about'
         }
     ]
-    // const nameNav = useSelector(({show}) => show.nameNav)
     const location = useLocation();
     const isActive = location.pathname
+    const sentOrder = 0;
 
     return (
         <Container size="1200px">
@@ -41,9 +42,12 @@ function Navbar() {
                 </ul>
                 <div className="flex gap-7 items-center">
                     <span><IconSearch cursor="pointer" size={27} color="#3D3D3D" /></span>
-                    <Badge color="info" badgeContent={0} showZero>
+                    <div className="relative">
                         <IconShoppingCart cursor="pointer" size={27} color="#3D3D3D" />
-                    </Badge>
+                        {sentOrder > 0 && <div className="bg-colLight absolute -top-2 -right-1 font-[500] text-white w-[18px] h-[18px] rounded-full flex items-center justify-center text-[12px]">
+                            {sentOrder}
+                        </div>}
+                    </div>
                     <Button leftSection={<IconLogin2 size={24} />} color="#3a539d" variant="filled">
                         Авторизоваться
                     </Button>
