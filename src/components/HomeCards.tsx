@@ -14,10 +14,10 @@ function HomeCards() {
             {isCategor ? <Categories /> : null}
             <div className={`grid mt-10 ${isCategor ? 'grid-cols-3 gap-x-9' : 'grid-cols-4 gap-x-9'} gap-y-12`}>
                 {isLoading ?
-                    [...new Array(8)].map(() =>
-                        <div className="w-full">
+                    [...new Array(8)].map((_, i) =>
+                        <div key={i} className="w-full">
                             <Skeleton className="h-[250px]">
-                                salom asjdcfjhasdvcjhasdvcjasvcjhasvcjhsavcjasvcajsvcasjhvc
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora, amet.
                             </Skeleton>
                             <Skeleton className="mt-5 w-[90%] mx-auto h-[80px]">
                             </Skeleton>

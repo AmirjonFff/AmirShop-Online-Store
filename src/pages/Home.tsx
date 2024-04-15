@@ -3,7 +3,7 @@ import HomeStart from '../components/HomeStart'
 
 function Home() {
   return (
-    <div>
+    <div className='pt-[80px]'>
       <HomeStart />
       <HomeDevices />
     </div>

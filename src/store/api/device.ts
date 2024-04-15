@@ -15,6 +15,7 @@ interface IMyCard {
 
 type PostsResponse = IMyCard[]
 
+
 export const deviceApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'https://fakestoreapi.com' }),
     tagTypes: ['Device'],
@@ -29,6 +30,16 @@ export const deviceApi = createApi({
                     ]
                     : [{ type: 'Device', id: 'LIST' }],
         }),
+        getDeviceId: build.query<PostsResponse, void>({
+            query: (id) => `/products/${id}`,
+            providesTags: (result) =>
+                result
+                    ? [
+                        ...result.map(({ id }) => ({ type: 'Device' as const, id })),
+                        { type: 'Device', id: 'LIST' },
+                    ]
+                    : [{ type: 'Device', id: 'LIST' }],
+        }),
     }),
 })
-export const { useGetDeviceQuery } = deviceApi
+export const { useGetDeviceQuery, useGetDeviceIdQuery } = deviceApi
