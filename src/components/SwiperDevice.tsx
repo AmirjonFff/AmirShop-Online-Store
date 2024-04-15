@@ -30,7 +30,7 @@ export default function MySwiperDevice({ images }: ImySwiperDevice) {
     };
 
     return (
-        <div className='w-[450px] flex gap-5 items-start'>
+        <div className='w-[570px] flex gap-5 items-start'>
             <div className='w-[100px] flex flex-col gap-4'>
                 {
                     images.map((img, i) =>
@@ -40,7 +40,7 @@ export default function MySwiperDevice({ images }: ImySwiperDevice) {
                     )
                 }
             </div>
-            <div className='h-[450px] w-full bg-colDull'>
+            <div className='h-[450px] w-[450px] bg-colDull'>
                 <Swiper
                     spaceBetween={30}
                     centeredSlides={true}

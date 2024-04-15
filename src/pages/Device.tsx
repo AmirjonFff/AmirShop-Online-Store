@@ -1,4 +1,4 @@
-import { Container } from "@mantine/core";
+import { Box, Container, Title } from "@mantine/core";
 import { useParams } from "react-router-dom";
 import MySwiperDevice from "../components/SwiperDevice";
 import { useGetDeviceIdQuery } from "../store/api/device";
@@ -19,7 +19,11 @@ function Device() {
             <div className="mt-10 flex w-full">
                 <MySwiperDevice images={images} />
                 <div>
-                    <div>salom</div>
+                    <Box>
+                        <Title>
+                            
+                        </Title>
+                    </Box>
                 </div>
             </div>
         </Container>
