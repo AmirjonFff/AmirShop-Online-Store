@@ -6,6 +6,8 @@ import { Skeleton } from "@mantine/core";
 
 function HomeCards() {
     const { data = [], isLoading } = useGetDeviceQuery();
+    console.log(data[0]);
+    
     const isCategor = useSelector(({ shop }: any) => shop.isCategor)
     console.log(data);
 
@@ -25,7 +27,7 @@ function HomeCards() {
                     )
                     :
                     data.slice(1, isCategor ? 10 : 13).map(card =>
-                        <MyCard {...card} key={card.id} />
+                        <MyCard card={card} key={card.id} />
                     )
                 }
 

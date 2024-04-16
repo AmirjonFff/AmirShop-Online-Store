@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Shop from './pages/Shop';
 import Stock from './pages/Stock';
 import Device from './pages/Device';
+import Order from './pages/Order';
 
 function App() {
   const router = createBrowserRouter([
@@ -34,6 +35,10 @@ function App() {
         {
           path: '/stock',
           element: <Stock />
+        },
+        {
+          path: '/order',
+          element: <Order />
         },
       ]
     }

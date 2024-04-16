@@ -6,7 +6,7 @@ import { Navigation } from 'swiper/modules';
 import { useState, useEffect } from 'react';
 
 interface ImySwiperDevice {
-    images: string[];
+    images: string[] | undefined;
 }
 
 export default function MySwiperDevice({ images }: ImySwiperDevice) {
@@ -33,7 +33,7 @@ export default function MySwiperDevice({ images }: ImySwiperDevice) {
         <div className='w-[570px] flex gap-5 items-start'>
             <div className='w-[100px] flex flex-col gap-4'>
                 {
-                    images.map((img, i) =>
+                    images?.map((img, i) =>
                         <div key={i} className={`${i === tab && "outline-colLight outline outline-2"} w-[100px] h-[100px] bg-colDull`} onClick={() => handleTabClick(i)} >
                             <img className='w-full h-[100%]' src={img} alt="" />
                         </div>
@@ -54,8 +54,8 @@ export default function MySwiperDevice({ images }: ImySwiperDevice) {
                     onSwiper={setSwiper}
                 >
                     {
-                        images.map(image =>
-                            <SwiperSlide key={image} className='bg-transparent flex'><img className='h-[90%] object-center' src={image} alt="" /></SwiperSlide>
+                        images?.map((image, i) =>
+                            <SwiperSlide key={i} className='bg-transparent flex'><img className='h-[90%] object-center' src={image} alt="" /></SwiperSlide>
                         )
                     }
                 </Swiper>

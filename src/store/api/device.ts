@@ -1,45 +1,43 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { providesList } from '../cash';
+
 interface IMyCard {
-    id: number
-    title: string
-    price: number
-    description: string,
-    image: string
-    rating: [
-        {
-            count: number,
-            rate: number
-        }
-    ]
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    images: string[];
+    creationAt: string;
+    updatedAt: string;
+    category: Category;
 }
 
-type PostsResponse = IMyCard[]
-
+interface Category {
+    id: number;
+    name: string;
+    image: string;
+    creationAt: string;
+    updatedAt: string;
+}
 
 export const deviceApi = createApi({
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://fakestoreapi.com' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://api.escuelajs.co/api/v1/' }),
     tagTypes: ['Device'],
     endpoints: (build) => ({
-        getDevice: build.query<PostsResponse, void>({
+        getDevice: build.query<IMyCard[], void>({
             query: () => '/products',
-            providesTags: (result) =>
-                result
-                    ? [
-                        ...result.map(({ id }) => ({ type: 'Device' as const, id })),
-                        { type: 'Device', id: 'LIST' },
-                    ]
-                    : [{ type: 'Device', id: 'LIST' }],
+            providesTags: (result = []) => providesList(result, 'Device'),
         }),
-        getDeviceId: build.query<PostsResponse, void>({
+        getDeviceId: build.query<IMyCard, number | undefined>({
             query: (id) => `/products/${id}`,
-            providesTags: (result) =>
-                result
-                    ? [
-                        ...result.map(({ id }) => ({ type: 'Device' as const, id })),
-                        { type: 'Device', id: 'LIST' },
-                    ]
-                    : [{ type: 'Device', id: 'LIST' }],
+            providesTags: (result) => {
+                if (result) {
+                    return providesList([result], 'Device');
+                }
+                return [];
+            },
         }),
     }),
-})
-export const { useGetDeviceQuery, useGetDeviceIdQuery } = deviceApi
+});
+
+export const { useGetDeviceQuery, useGetDeviceIdQuery } = deviceApi;

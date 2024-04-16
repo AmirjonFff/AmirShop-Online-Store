@@ -1,31 +1,24 @@
-import { Box, Container, Title } from "@mantine/core";
+import { Container } from "@mantine/core";
 import { useParams } from "react-router-dom";
+import DeviceFollow from "../components/DeviceFollow";
 import MySwiperDevice from "../components/SwiperDevice";
 import { useGetDeviceIdQuery } from "../store/api/device";
+import DeviceFollowTab from "../components/DeviceFollowTab";
 
 function Device() {
 
     const { id } = useParams()
-    console.log(id);
-
-    // const { data, isLoading } = useGetDeviceIdQuery();
-    console.log(useGetDeviceIdQuery());
-
-    const images = ['https://imgcdn.loverepublic.ru/upload/images/33595/thumb/600_9999/3359544144_61_5.jpg', 'https://upload.leboutique.com/upload/media/category/kids-dress.jpg', 'https://imgcdn.loverepublic.ru/upload/images/33595/thumb/600_9999/3359544144_61_5.jpg', 'https://upload.leboutique.com/upload/media/category/kids-dress.jpg']
-
+    const { data, isLoading } = useGetDeviceIdQuery(Number(id));
+    console.log(data);
 
     return (
         <Container size={1200} className='pt-[80px]'>
-            <div className="mt-10 flex w-full">
-                <MySwiperDevice images={images} />
-                <div>
-                    <Box>
-                        <Title>
-                            
-                        </Title>
-                    </Box>
-                </div>
+            <div className="mt-10 flex gap-16">
+                <MySwiperDevice images={data?.images} />
+                <DeviceFollow isLoading={isLoading} data={data} />
             </div>
+            <DeviceFollowTab description={data?.description} />
+
         </Container>
 
     )
