@@ -1,14 +1,13 @@
 import { Outlet } from 'react-router-dom'
 import { Footer } from '../components/Footer'
-import Navbar from '../components/Navbar'
+import { Headroom } from '../components/NavbarMui'
 
 function Layout() {
     return (
         <div>
-            <Navbar />
-            {/* <HideAppBar> */}
-            <Outlet />
-            {/* </HideAppBar> */}
+            <Headroom>
+                <Outlet />
+            </Headroom>
             <Footer />
         </div>
     )

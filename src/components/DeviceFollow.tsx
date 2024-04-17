@@ -50,7 +50,7 @@ function DeviceFollow({ data, isLoading }: { data: IMyCard | undefined, isLoadin
                         <span className="text-[20px] font-[500]">{countDevice}</span>
                         <span className={`cursor-pointer w-[33px] h-[38px] bg-colLight text-white font-bold rounded-full flex items-center justify-center text-[20px] pb-1 ${size === 'S' && 'border-colLight text-colLight font-bold'}`} onClick={() => setSize('S')}>+</span>
 
-                        <Button color="#3a539d">В КАЗИНУ</Button>
+                        <Button color="#3a539d">В КАРЗИНУ</Button>
                         <Button variant="default" className="border-colLight text-colLight -ml-2">КУПИТ СЕЙЧАС</Button>
                     </Box>
                     <div className="flex items-center mt-5 gap-2"> <Title className="text-[17px]">Категории: </Title> <span className="text-[15px] text-[#727272]">{data?.category.name}</span> </div>

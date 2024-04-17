@@ -1,12 +1,15 @@
 import { Button, Container } from "@mantine/core";
 import { IconLogin2, IconSearch, IconShoppingCart } from "@tabler/icons-react";
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 
 
 function Navbar() {
 
-    const order = JSON.parse(localStorage.getItem("carts") as string) || [];
+    const [product, setProducts] = useState(JSON.parse(localStorage.getItem("carts") as string) || [])
+    setProducts
+
 
     const navData = [
         {
@@ -26,9 +29,12 @@ function Navbar() {
             path: '/about'
         }
     ]
+
+
+
     const location = useLocation();
     const isActive = location.pathname;
-    const countOrder = order.reduce((a: number, b: any) => a + b.quantity, 0)
+    const countOrder = product.reduce((a: number, b: any) => a + b.quantity, 0)
     const navigate = useNavigate();
 
     return (
@@ -49,7 +55,7 @@ function Navbar() {
                             <IconSearch cursor="pointer" size={27} color="#3D3D3D" /></span>
                         <div className="relative" onClick={() => navigate('order')}>
                             <IconShoppingCart cursor="pointer" size={27} color="#3D3D3D" />
-                            {order.length > 0 && <div className="bg-colLight absolute -top-2 -right-1 font-[500] text-white w-[18px] h-[18px] rounded-full flex items-center justify-center text-[12px]">
+                            {product.length > 0 && <div className="bg-colLight absolute -top-2 -right-1 font-[500] text-white w-[18px] h-[18px] rounded-full flex items-center justify-center text-[12px]">
                                 {countOrder}
                             </div>}
                         </div>
