@@ -2,7 +2,7 @@ import { Button, Card, Group, Text } from '@mantine/core';
 import { IconBasket } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 import { IMyCard } from '../store/type';
-import { handleClick } from '../store/addLocStor';
+import { handleClick } from '../store/handleLocStorage';
 
 
 

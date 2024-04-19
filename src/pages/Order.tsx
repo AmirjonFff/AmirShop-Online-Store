@@ -2,7 +2,7 @@ import { Box, Button, Container, Image, Table, Title } from "@mantine/core";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SizeDevice from "../components/SizeDevice";
-import { delProduct } from "../store/addLocStor";
+import { delProduct } from "../store/handleLocStorage";
 import { IMyCard } from "../store/type";
 
 function Order() {
