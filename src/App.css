@@ -20,9 +20,16 @@
   object-fit: cover;
 }
 
-.myCard:hover .myPrice{
+.myCard:hover .myPrice {
   bottom: 5px;
 }
 
-/* Footer */
+.btnDis {
+  &:disabled {
+    background-color: #6b80c0;
+    cursor: not-allowed;
+    /* Другие стили для отключенной кнопки */
+  }
+}
 
+/* Footer */

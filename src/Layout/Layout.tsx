@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import { Footer } from '../components/Footer'
-import { Headroom } from '../components/NavbarMui'
+import { Headroom } from '../components/Navbar'
 
 function Layout() {
     return (
