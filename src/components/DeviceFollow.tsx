@@ -2,13 +2,15 @@ import { Box, Button, Rating, Skeleton, Title } from "@mantine/core";
 import { IconBrandInstagram, IconBrandTelegram, IconBrandWhatsapp, IconMail } from "@tabler/icons-react";
 import { useState } from "react";
 import { IMyCard } from "../store/type";
-import { useSelector } from "react-redux";
+import HandleQuantity from "./HandleQuantity";
 
 
 
 function DeviceFollow({ data, isLoading }: { data: IMyCard | undefined, isLoading: boolean }) {
     const [size, setSize] = useState('S')
-    const countDevice = useSelector(({ shop }: any) => shop.countDevice)
+    const [quantity, setQuantity] = useState(1)
+    const increment = () => setQuantity(quantity + 1)
+    const decrement = () => setQuantity(quantity - 1)
     return (
         <div className="w-full">
             {isLoading ?
@@ -46,9 +48,7 @@ function DeviceFollow({ data, isLoading }: { data: IMyCard | undefined, isLoadin
                         <span className={`cursor-pointer border-colDull border-[1px] w-[30px] h-[30px] rounded-full flex items-center justify-center text-[14px] ${size === 'XL' && 'border-colLight text-colLight font-bold'}`} onClick={() => setSize('XL')}>XL</span>
                     </div>
                     <Box className="flex gap-5 items-center mt-5">
-                        <span className={`cursor-pointer w-[33px] h-[38px] bg-colLight text-white font-bold rounded-full flex items-center justify-center text-[20px] pb-1 ${size === 'S' && 'border-colLight text-colLight font-bold'}`} onClick={() => setSize('S')}>-</span>
-                        <span className="text-[20px] font-[500]">{countDevice}</span>
-                        <span className={`cursor-pointer w-[33px] h-[38px] bg-colLight text-white font-bold rounded-full flex items-center justify-center text-[20px] pb-1 ${size === 'S' && 'border-colLight text-colLight font-bold'}`} onClick={() => setSize('S')}>+</span>
+                        <HandleQuantity quantity={quantity} increment={increment} decrement={decrement} />
 
                         <Button color="#3a539d">В КАРЗИНУ</Button>
                         <Button variant="default" className="border-colLight text-colLight -ml-2">КУПИТ СЕЙЧАС</Button>

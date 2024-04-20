@@ -32,4 +32,12 @@
   }
 }
 
+.addOrderBtn {
+  &:disabled {
+    background-color: #3a539d;
+    cursor: not-allowed;
+    /* Другие стили для отключенной кнопки */
+  }
+}
+
 /* Footer */

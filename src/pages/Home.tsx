@@ -9,9 +9,9 @@ function Home() {
       <HomeStart />
       <HomeDevices />
       <Toaster
-  position="top-right"
-  reverseOrder={true}
-/>
+        position="top-right"
+        reverseOrder={true}
+      />
     </Container>
   )
 }

@@ -1,9 +1,10 @@
-import { Button, Card, Group, Text } from '@mantine/core';
+import { Box, Button, Card, Group, Image, Text } from '@mantine/core';
 import { IconBasket } from '@tabler/icons-react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addToCart } from '../store/slice/cart';
 import { IMyCard } from '../store/type';
+import { RootState } from '../store/store';
 
 
 
@@ -16,6 +17,9 @@ export function MyCard({ card }: { card: IMyCard }) {
     const handleAddToCart = (product: IMyCard) => {
         dispatch(addToCart(product));
     };
+
+    const cart = useSelector((state: RootState) => state.cart);
+    const isGal = (id: number) => !!cart.cartItems.find(el => el.id === id)
 
     return (
         <Card shadow="sm" className='cursor-pointer myCard border-none' padding="lg" radius="md" withBorder>
@@ -31,7 +35,7 @@ export function MyCard({ card }: { card: IMyCard }) {
             <Group onClick={() => navigate('/device/' + card.id)} justify="space-between" mt="md" mb="xs">
                 <Text fw={500}>{card.title.length < 28 ? card.title : `${card.title.slice(0, 40)}...`}</Text>
             </Group>
-            <Button onClick={() => handleAddToCart(card)} leftSection={<IconBasket size={20} />} color="#3a539d" fullWidth mt="auto" radius="md"> В корзину
+            <Button disabled={isGal(card.id)} className='relative addOrderBtn' onClick={() => handleAddToCart(card)} leftSection={<IconBasket size={20} />} color="#3a539d" fullWidth mt="auto" radius="md"> В корзину {isGal(card.id) && <Box className='absolute right-3 -bottom-[3px]' w={50}><Image src={'image/home/галочка.png'} /></Box>}
             </Button>
         </Card>
     );

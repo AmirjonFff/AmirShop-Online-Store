@@ -1,4 +1,4 @@
-import { AppShell, Container, Text } from '@mantine/core';
+import { Container, Text } from '@mantine/core';
 import { IconBrandFacebook, IconBrandInstagram, IconBrandTelegram } from '@tabler/icons-react';
 import classes from './FooterLinks.module.css';
 import Logo from './Logo';
@@ -56,7 +56,7 @@ export function Footer() {
 
     return (
         <Container className={classes.footer} size={1200}>
-            <AppShell className={`${classes.inner} border-[#3a539d84] border-t-[1px]`}>
+            <div className={`${classes.inner} border-[#3a539d84] border-t-[1px]`}>
                 <div className={classes.logo}>
                     <div className="cursor-pointer text-xl font-bold mb-4">
                         <Logo />
@@ -74,7 +74,7 @@ export function Footer() {
                         <IconBrandFacebook size={40} className='text-colLight cursor-pointer' />
                     </div>
                 </div>
-            </AppShell>
+            </div>
         </Container>
     );
 }

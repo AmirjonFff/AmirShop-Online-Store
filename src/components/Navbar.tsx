@@ -13,7 +13,7 @@ interface IHeadroom {
 }
 
 export function Headroom({ children }: IHeadroom) {
-  
+
 
   const pinned = useHeadroom({ fixedAt: 120 });
   const location = useLocation();
