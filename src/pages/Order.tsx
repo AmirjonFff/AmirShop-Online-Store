@@ -1,59 +1,35 @@
 import { Box, Button, Container, Image, Table, Title } from "@mantine/core";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SizeDevice from "../components/SizeDevice";
-import { delProduct } from "../store/handleLocStorage";
-import { IMyCard } from "../store/type";
+import { addToCart, decreaseCart, getTotals, removeFromCart } from "../store/slice/cart";
+import { IMyproduct } from "../store/type";
 
 function Order() {
     const navigate = useNavigate();
 
-    interface IMyproduct extends IMyCard {
-        quantity: number;
-    }
-
-    const [products, setProducts] = useState<IMyproduct[]>(
-        JSON.parse(localStorage.getItem("carts") as string) || []
-    );
+    const cart = useSelector((state: any) => state.cart);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        // Обновляем состояние корзины из localStorage при изменении его значения
-        const storedData = localStorage.getItem("carts");
-        if (storedData) {
-            setProducts(JSON.parse(storedData));
-        }
-    }, []);
+        dispatch(getTotals(null));
+    }, [cart, dispatch]);
 
-    const handleIncrement = (id: number) => {
-        const updateCart = products.map((product) => {
-            if (product.id === id) {
-                return {
-                    ...product,
-                    quantity: product.quantity + 1,
-                };
-            }
-            return product;
-        });
-        updateCartState(updateCart);
+    const handleAddToCart = (product: IMyproduct) => {
+        dispatch(addToCart(product));
     };
+    const handleDecreaseCart = (product: IMyproduct) => {
+        dispatch(decreaseCart(product));
+    };
+    const handleRemoveFromCart = (product: IMyproduct) => {
+        dispatch(removeFromCart(product));
+    };
+    // const handleClearCart = () => {
+    //     dispatch(clearCart());
+    // };
 
-    const handleDecrement = (id: number) => {
-        const updateCart = products.map((product) => {
-            if (product.id === id) {
-                return {
-                    ...product,
-                    quantity: product.quantity - 1,
-                };
-            }
-            return product;
-        });
-        updateCartState(updateCart);
-    };
-
-    const updateCartState = (updatedCart: IMyproduct[]) => {
-        setProducts(updatedCart);
-        localStorage.setItem("carts", JSON.stringify(updatedCart));
-    };
+    const { cartItems } = cart
 
     return (
         <Container size={1200} pt={80}>
@@ -68,10 +44,10 @@ function Order() {
                 </Table.Thead>
                 <Table.Tbody>
                     {
-                        products.map(product =>
+                        cartItems && cartItems?.map((product: IMyproduct) =>
                             <Table.Tr key={product.id} mt={5}>
                                 <Table.Td className="w-[80px]">
-                                    <Image src={product.images[0]} />
+                                    <Image src={product?.images[0]} />
                                 </Table.Td>
                                 <Table.Td>
                                     <Title size={16} className="cursor-pointer" onClick={() => navigate(`/device/${product.id}`)}>
@@ -86,20 +62,19 @@ function Order() {
                                 </Table.Td>
                                 <Table.Td>
                                     <Box className="flex items-center gap-3">
-                                        <Button disabled={product.quantity <= 1} onClick={() => handleDecrement(product.id)} className={`btnDis cursor-pointer w-[33px] h-[38px] px-0 bg-colLight text-white font-bold rounded-full flex items-center justify-center text-[20px]`}>-</Button>
-                                        <Title className="text-[20px] font-[500] w-[20px] text-center">{product.quantity}</Title>
-                                        <Button disabled={product.quantity >= 9} onClick={() => handleIncrement(product.id)} className={`btnDis cursor-pointer w-[30px] h-[38px] px-0 bg-colLight text-white font-bold rounded-full flex items-center justify-center text-[20px] pb-1`}>+</Button>
+                                        <Button disabled={product.cartQuantity <= 1} onClick={() => handleDecreaseCart(product)} className={`btnDis cursor-pointer w-[33px] h-[38px] px-0 bg-colLight text-white font-bold rounded-full flex items-center justify-center text-[20px]`}>-</Button>
+                                        <Title className="text-[20px] font-[500] w-[20px] text-center">{product.cartQuantity}</Title>
+                                        <Button disabled={product.cartQuantity >= 9} onClick={() => handleAddToCart(product)} className={`btnDis cursor-pointer w-[30px] h-[38px] px-0 bg-colLight text-white font-bold rounded-full flex items-center justify-center text-[20px] pb-1`}>+</Button>
                                     </Box>
                                 </Table.Td>
                                 <Table.Td>
                                     <Title size={16}>
-                                        {product.quantity * product.price} c
+                                        {product.cartQuantity * product.price} c
                                     </Title>
                                 </Table.Td>
                                 <Table.Td>
                                     <Image onClick={() => {
-                                        delProduct(product.id);
-                                        updateCartState(products.filter(p => p.id !== product.id));
+                                        handleRemoveFromCart(product)
                                     }} w={20} className="cursor-pointer" src={'image/home/Delete.svg'} />
                                 </Table.Td>
                             </Table.Tr>

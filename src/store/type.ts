@@ -16,5 +16,5 @@ interface Category {
   updatedAt: string;
 }
 export interface IMyproduct extends IMyCard {
-  quantity: number;
+  cartQuantity: number;
 }
