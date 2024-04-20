@@ -1,3 +1,9 @@
+import { combineReducers } from '@reduxjs/toolkit'
+
+const rootReducer = combineReducers({})
+export type RootState = ReturnType<typeof rootReducer>
+
+
 export interface IMyCard {
   id: number;
   title: string;

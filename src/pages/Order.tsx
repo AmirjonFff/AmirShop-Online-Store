@@ -3,13 +3,14 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SizeDevice from "../components/SizeDevice";
-import { addToCart, decreaseCart, getTotals, removeFromCart } from "../store/slice/cart";
+import { addToCart, clearCart, decreaseCart, getTotals, removeFromCart } from "../store/slice/cart";
 import { IMyproduct } from "../store/type";
+import { RootState } from "../store/store";
 
 function Order() {
     const navigate = useNavigate();
 
-    const cart = useSelector((state: any) => state.cart);
+    const cart = useSelector((state: RootState) => state.cart);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -25,9 +26,10 @@ function Order() {
     const handleRemoveFromCart = (product: IMyproduct) => {
         dispatch(removeFromCart(product));
     };
-    // const handleClearCart = () => {
-    //     dispatch(clearCart());
-    // };
+
+    const handleClearCart = () => {
+        dispatch(clearCart(null));
+    };
 
     const { cartItems } = cart
 
@@ -82,6 +84,9 @@ function Order() {
                     }
                 </Table.Tbody>
             </Table>
+            <Button onClick={handleClearCart} variant="default" mt={10}>
+                Очистить корзину
+            </Button>
         </Container>
     );
 }

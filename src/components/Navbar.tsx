@@ -6,20 +6,20 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import { useEffect } from 'react';
 import { getTotals } from '../store/slice/cart';
+import { RootState } from '../store/store';
 
 interface IHeadroom {
   children: JSX.Element
 }
 
 export function Headroom({ children }: IHeadroom) {
-
-  // type RootState = ReturnType<typeof store.getState>
+  
 
   const pinned = useHeadroom({ fixedAt: 120 });
   const location = useLocation();
   const isActive = location.pathname;
   const navigate = useNavigate();
-  const cart = useSelector((state: any) => state.cart);
+  const cart = useSelector((state: RootState) => state.cart);
   const { cartTotalQuantity } = cart
   const dispatch = useDispatch();
 
