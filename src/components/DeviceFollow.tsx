@@ -3,14 +3,27 @@ import { IconBrandInstagram, IconBrandTelegram, IconBrandWhatsapp, IconMail } fr
 import { useState } from "react";
 import { IMyCard } from "../store/type";
 import HandleQuantity from "./HandleQuantity";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, decreaseCart } from "../store/slice/cart";
+import { RootState } from "../store/store";
+import SizeDevice from "./SizeDevice";
 
 
 
 function DeviceFollow({ data, isLoading }: { data: IMyCard | undefined, isLoading: boolean }) {
-    const [size, setSize] = useState('S')
     const [quantity, setQuantity] = useState(1)
-    const increment = () => setQuantity(quantity + 1)
-    const decrement = () => setQuantity(quantity - 1)
+    setQuantity
+    const increment = () => dispatch(addToCart(data))
+    const decrement = () => dispatch(decreaseCart(data));
+
+
+    const dispatch = useDispatch()
+    const cart = useSelector((state: RootState) => state.cart);
+    const isGal = (id: number | undefined) => !!cart.cartItems.find(el => el.id === id)
+    const handleAddToCart = (product: IMyCard | undefined) => {
+        dispatch(addToCart(product));
+    };
+
     return (
         <div className="w-full">
             {isLoading ?
@@ -41,16 +54,10 @@ function DeviceFollow({ data, isLoading }: { data: IMyCard | undefined, isLoadin
                     <Title className="text-[17px]">Краткое описание:</Title>
                     <div className="text-[15px] leading-6 text-[#727272] mt-2">{data?.description.slice(0, 220)}.</div>
                     <Title className="text-[17px] mt-4">Размер:</Title>
-                    <div className="flex gap-3 mt-2">
-                        <span className={`cursor-pointer border-colDull border-[1px] w-[30px] h-[30px] rounded-full flex items-center justify-center text-[14px] ${size === 'S' && 'border-colLight text-colLight font-bold'}`} onClick={() => setSize('S')}>S</span>
-                        <span className={`cursor-pointer border-colDull border-[1px] w-[30px] h-[30px] rounded-full flex items-center justify-center text-[14px] ${size === 'M' && 'border-colLight text-colLight font-bold'}`} onClick={() => setSize('M')}>M</span>
-                        <span className={`cursor-pointer border-colDull border-[1px] w-[30px] h-[30px] rounded-full flex items-center justify-center text-[14px] ${size === 'L' && 'border-colLight text-colLight font-bold'}`} onClick={() => setSize('L')}>L</span>
-                        <span className={`cursor-pointer border-colDull border-[1px] w-[30px] h-[30px] rounded-full flex items-center justify-center text-[14px] ${size === 'XL' && 'border-colLight text-colLight font-bold'}`} onClick={() => setSize('XL')}>XL</span>
-                    </div>
+                    <SizeDevice />
                     <Box className="flex gap-5 items-center mt-5">
                         <HandleQuantity quantity={quantity} increment={increment} decrement={decrement} />
-
-                        <Button color="#3a539d">В КАРЗИНУ</Button>
+                        <Button disabled={isGal(data?.id)} onClick={() => handleAddToCart(data)} color="#3a539d">В КАРЗИНУ</Button>
                         <Button variant="default" className="border-colLight text-colLight -ml-2">КУПИТ СЕЙЧАС</Button>
                     </Box>
                     <div className="flex items-center mt-5 gap-2"> <Title className="text-[17px]">Категории: </Title> <span className="text-[15px] text-[#727272]">{data?.category.name}</span> </div>
