@@ -1,25 +1,22 @@
 import { Box, Button, Rating, Skeleton, Title } from "@mantine/core";
 import { IconBrandInstagram, IconBrandTelegram, IconBrandWhatsapp, IconMail } from "@tabler/icons-react";
-import { useState } from "react";
-import { IMyCard } from "../store/type";
-import HandleQuantity from "./HandleQuantity";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, decreaseCart } from "../store/slice/cart";
 import { RootState } from "../store/store";
+import { IMyCard } from "../store/type";
+import HandleQuantity from "./HandleQuantity";
 import SizeDevice from "./SizeDevice";
 
 
 
 function DeviceFollow({ data, isLoading }: { data: IMyCard | undefined, isLoading: boolean }) {
-    const [quantity, setQuantity] = useState(1)
-    setQuantity
-    const increment = () => dispatch(addToCart(data))
-    const decrement = () => dispatch(decreaseCart(data));
-
-
     const dispatch = useDispatch()
     const cart = useSelector((state: RootState) => state.cart);
     const isGal = (id: number | undefined) => !!cart.cartItems.find(el => el.id === id)
+    const newData = cart.cartItems.find(el => el.id === data?.id);
+    
+    const increment = () => dispatch(addToCart(data))
+    const decrement = () => dispatch(decreaseCart(data));
     const handleAddToCart = (product: IMyCard | undefined) => {
         dispatch(addToCart(product));
     };
@@ -56,7 +53,7 @@ function DeviceFollow({ data, isLoading }: { data: IMyCard | undefined, isLoadin
                     <Title className="text-[17px] mt-4">Размер:</Title>
                     <SizeDevice />
                     <Box className="flex gap-5 items-center mt-5">
-                        <HandleQuantity quantity={quantity} increment={increment} decrement={decrement} />
+                        <HandleQuantity quantity={newData?.cartQuantity ? newData?.cartQuantity : 1} increment={increment} decrement={decrement} />
                         <Button disabled={isGal(data?.id)} onClick={() => handleAddToCart(data)} color="#3a539d">В КАРЗИНУ</Button>
                         <Button variant="default" className="border-colLight text-colLight -ml-2">КУПИТ СЕЙЧАС</Button>
                     </Box>

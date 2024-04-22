@@ -23,8 +23,6 @@ export function Headroom({ children }: IHeadroom) {
   const { cartTotalQuantity } = cart
   const dispatch = useDispatch();
 
-  console.log(cartTotalQuantity);
-
   useEffect(() => {
     dispatch(getTotals(null));
   }, [cart, dispatch]);
