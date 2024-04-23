@@ -1,24 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { providesList } from '../cash';
+import { ICategory, IMyCard, ISearch } from '../type';
 
-interface IMyCard {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    images: string[];
-    creationAt: string;
-    updatedAt: string;
-    category: Category;
-}
-
-interface Category {
-    id: number;
-    name: string;
-    image: string;
-    creationAt: string;
-    updatedAt: string;
-}
 
 export const deviceApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'https://api.escuelajs.co/api/v1/' }),
@@ -37,7 +20,15 @@ export const deviceApi = createApi({
                 return [];
             },
         }),
+        getCategories: build.query<ICategory[], void>({
+            query: () => `/categories`,
+            providesTags: (result = []) => providesList(result, 'Device'),
+        }),
+        getSearch: build.query<IMyCard[], ISearch>({
+            query: ({ title, price_min, price_max, categoryId }) => `/products?title=${title}&price_min=${price_min}&price_max=${price_max}&categoryId=${categoryId}`,
+            providesTags: (result = []) => providesList(result, 'Device'),
+        }),
     }),
 });
 
-export const { useGetDeviceQuery, useGetDeviceIdQuery } = deviceApi;
+export const { useGetDeviceQuery, useGetDeviceIdQuery, useGetCategoriesQuery, useGetSearchQuery } = deviceApi;

@@ -3,16 +3,18 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export interface CounterState {
   nameNav: string;
-  itemId: number | null;
+  categoryId: number | null;
   sizeId: number | null;
   isCategor: boolean;
+  priceValue: number[];
 }
 
 const initialState: CounterState = {
   nameNav: '',
-  itemId: 0,
+  categoryId: 0,
   sizeId: 0,
   isCategor: false,
+  priceValue: [20, 37]
 }
 
 export const slice = createSlice({
@@ -22,18 +24,21 @@ export const slice = createSlice({
     SetNameNav: (state, action: PayloadAction<string>) => {
       state.nameNav += action.payload
     },
-    handleItemId: (state, action: PayloadAction<number>) => {
-      state.itemId = action.payload;
+    handleCategoryId: (state, action: PayloadAction<number>) => {
+      state.categoryId = action.payload;
     },
     handleSizeId: (state, action: PayloadAction<number>) => {
-      state.itemId = action.payload;
+      state.sizeId = action.payload;
     },
     handleIsCategor: (state, action: PayloadAction<boolean>) => {
       state.isCategor = action.payload;
+    },
+    handlePriceValue: (state, action: PayloadAction<number[]>) => {
+      state.priceValue = action.payload;
     }
   },
 })
 
-export const { SetNameNav, handleItemId, handleIsCategor } = slice.actions
+export const { SetNameNav, handleCategoryId, handleIsCategor, handlePriceValue } = slice.actions
 
 export default slice.reducer

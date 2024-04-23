@@ -1,17 +1,19 @@
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { handlePriceValue } from '../store/slice/slice';
 
 function valuetext(value: number) {
     return `${value}°C`;
 }
 
 function CategoriesPrice() {
-    const [value, setValue] = React.useState<number[]>([20, 37]);
+    const priceValue = useSelector(({ shop }: any) => shop.priceValue)
+    const dispach = useDispatch()
 
     const handleChange = (event: Event, newValue: number | number[]) => {
         event = event
-        setValue(newValue as number[]);
+        dispach(handlePriceValue(newValue as number[]));
     };
 
     return (
@@ -20,7 +22,7 @@ function CategoriesPrice() {
                 <Slider
                     sx={{ width: 220, color: "#263e87", height: "5px" }}
                     getAriaLabel={() => 'Temperature range'}
-                    value={value}
+                    value={priceValue}
                     onChange={handleChange}
                     valueLabelDisplay="auto"
                     getAriaValueText={valuetext}
@@ -28,7 +30,7 @@ function CategoriesPrice() {
             </Box>
 
             <div className='text-[15px]'>
-                Цена: <span className='text-colLight font-[700]'>${value[0]} - ${value[1]}</span>
+                Цена: <span className='text-colLight font-[700]'>${priceValue[0]} - ${priceValue[1]}</span>
             </div>
 
             <button className='w-[90px] h-[35px] mt-6 rounded-[6px] bg-colLight text-white text-[16px]'>Фильтр</button>

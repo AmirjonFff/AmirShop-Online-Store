@@ -1,9 +1,4 @@
-"use client"
-import { useSelector } from 'react-redux';
-import CategoriesItem from './CategoriesItem';
-
 function CategoriesColor() {
-    const sizeId = useSelector(({ shop }: any) => shop.sizeId);
     const item = [
         {
             title: "Черный",
@@ -22,7 +17,7 @@ function CategoriesColor() {
     return (
         <div>
             {
-                item.map((el, i) => <CategoriesItem key={i} i={i} active={i === sizeId} {...el} />)
+                item.map((el, i) => <div key={i}>{el.title}</div>)
             }
         </div>
     )

@@ -1,14 +1,18 @@
+import { Skeleton } from "@mantine/core";
 import { useSelector } from "react-redux";
-import { useGetDeviceQuery } from "../store/api/device"
+import { useGetDeviceQuery, useGetSearchQuery } from "../store/api/device";
 import { MyCard } from "./Card";
 import Categories from "./Categories";
-import { Skeleton } from "@mantine/core";
 
 function HomeCards() {
     const { data = [], isLoading } = useGetDeviceQuery();
     console.log(data[0]);
-    
+
+    const categoryId = useSelector(({ shop }: any) => shop.categoryId)
     const isCategor = useSelector(({ shop }: any) => shop.isCategor)
+    const priceValue = useSelector(({ shop }: any) => shop.priceValue)
+
+    const { data: searchData } = useGetSearchQuery({ title: '', price_min: priceValue[0], price_max: priceValue[1], categoryId: categoryId });
     console.log(data);
 
     return (
@@ -26,7 +30,7 @@ function HomeCards() {
                         </div>
                     )
                     :
-                    data.slice(1, isCategor ? 10 : 13).map(card =>
+                    searchData?.slice(1, isCategor ? 10 : 13).map(card =>
                         <MyCard card={card} key={card.id} />
                     )
                 }

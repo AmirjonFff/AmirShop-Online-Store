@@ -12,9 +12,9 @@ export interface IMyCard {
   images: string[];
   creationAt: string;
   updatedAt: string;
-  category: Category;
+  category: ICategory;
 }
-interface Category {
+export interface ICategory {
   id: number;
   name: string;
   image: string;
@@ -23,4 +23,11 @@ interface Category {
 }
 export interface IMyproduct extends IMyCard {
   cartQuantity: number;
+}
+
+export interface ISearch {
+  title: string,
+  price_min: number,
+  price_max: number,
+  categoryId: number
 }

@@ -1,22 +1,28 @@
 "use client"
 import { useDispatch } from 'react-redux';
-import { handleItemId } from '../store/slice/slice';
+import { handleCategoryId } from '../store/slice/slice';
+import { ICategory } from '../store/type';
+import { useGetSearchQuery } from '../store/api/device';
 
 interface ICategoriesItem {
-    title: string;
-    quantity: number;
-    active?: boolean;
-    i: number;
+    data: ICategory
+    active: boolean
 }
 
-function CategoriesItem({ title, quantity, active, i }: ICategoriesItem) {
 
+
+function CategoriesItem({ data, active }: ICategoriesItem) {
+
+    const cntProduct = (id: number) => {
+        const { data } = useGetSearchQuery({ title: '', price_min: 0, price_max: 0, categoryId: id });
+        return data?.length
+    }
     const dispatch = useDispatch();
 
     return (
-        <div onClick={() => dispatch(handleItemId(i))} className={`flex justify-between text-[15px] font-[400] ${active && "text-colLight font-[700]"} leading-[20px] p-3 cursor-pointer`}>
-            <span>{title}</span>
-            <span>({quantity})</span>
+        <div onClick={() => dispatch(handleCategoryId(data?.id))} className={`flex justify-between text-[15px] font-[400] ${active && "text-colLight font-[700]"} leading-[20px] p-3 cursor-pointer`}>
+            <span>{data?.name}</span>
+            <span>({cntProduct(data?.id)})</span>
         </div>
     )
 }
