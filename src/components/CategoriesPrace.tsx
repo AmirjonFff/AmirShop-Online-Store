@@ -1,32 +1,20 @@
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
 import { useDispatch, useSelector } from 'react-redux';
 import { handlePriceValue } from '../store/slice/slice';
+import { Box, RangeSlider } from '@mantine/core';
 
-function valuetext(value: number) {
-    return `${value}°C`;
-}
 
 function CategoriesPrice() {
     const priceValue = useSelector(({ shop }: any) => shop.priceValue)
     const dispach = useDispatch()
 
-    const handleChange = (event: Event, newValue: number | number[]) => {
-        event = event
-        dispach(handlePriceValue(newValue as number[]));
+    const handleChange = (event: any) => {
+        return dispach(handlePriceValue(event as number[]));
     };
 
     return (
         <div className='p-3'>
             <Box>
-                <Slider
-                    sx={{ width: 220, color: "#263e87", height: "5px" }}
-                    getAriaLabel={() => 'Temperature range'}
-                    value={priceValue}
-                    onChange={handleChange}
-                    valueLabelDisplay="auto"
-                    getAriaValueText={valuetext}
-                />
+                <RangeSlider onChange={handleChange} color='#3a539d' minRange={0.2} min={0} max={150} step={1} defaultValue={priceValue} />
             </Box>
 
             <div className='text-[15px]'>
