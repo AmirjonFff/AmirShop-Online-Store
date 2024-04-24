@@ -1,12 +1,13 @@
 import { AppShell, Box, Button, Container, Group, UnstyledButton, rem } from '@mantine/core';
 import { useHeadroom } from '@mantine/hooks';
-import { IconLogin2, IconSearch, IconShoppingCart } from '@tabler/icons-react';
+import { IconLogin2, IconShoppingCart } from '@tabler/icons-react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import Logo from './Logo';
-import { useEffect } from 'react';
 import { getTotals } from '../store/slice/cart';
 import { RootState } from '../store/store';
+import Logo from './Logo';
+import { Search } from './Search';
 
 interface IHeadroom {
   children: JSX.Element
@@ -63,8 +64,7 @@ export function Headroom({ children }: IHeadroom) {
               )}
             </Group>
             <Group className="flex gap-7 items-center">
-              <UnstyledButton>
-                <IconSearch cursor="pointer" size={27} color="#3D3D3D" /></UnstyledButton>
+              <Search />
               <Box className="relative cursor-pointer" onClick={() => navigate('order')}>
                 <IconShoppingCart size={27} color="#3D3D3D" />
                 {cartTotalQuantity > 0 && <Box className="bg-colLight absolute -top-2 -right-1 font-[500] text-white w-[18px] h-[18px] rounded-full flex items-center justify-center text-[12px]">
@@ -74,6 +74,7 @@ export function Headroom({ children }: IHeadroom) {
               <Button leftSection={<IconLogin2 size={24} />} color="#3a539d" variant="filled">
                 Авторизоваться
               </Button>
+
             </Group>
           </Group>
         </Container>

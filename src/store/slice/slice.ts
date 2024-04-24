@@ -6,7 +6,7 @@ export interface CounterState {
   categoryId: number | null;
   sizeId: number | null;
   isCategor: boolean;
-  priceValue: number[];
+  priceValue: number[] | null[];
 }
 
 const initialState: CounterState = {
@@ -14,8 +14,9 @@ const initialState: CounterState = {
   categoryId: 0,
   sizeId: 0,
   isCategor: false,
-  priceValue: [20, 37]
+  priceValue: [5, 12000]
 }
+
 
 export const slice = createSlice({
   name: 'shop',
