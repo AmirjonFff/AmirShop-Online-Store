@@ -8,13 +8,13 @@ export function OrderModal() {
     const form = useForm({
         mode: 'uncontrolled',
         validateInputOnChange: true,
-        initialValues: { name: '', email: '', age: 0 },
+        initialValues: { tel: '', address: '' },
 
-        // functions will be used to validate values at corresponding key
+        
+        
         validate: {
-            name: (value) => (value.length < 2 ? 'Name must have at least 2 letters' : null),
-            email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-            age: (value) => (value < 18 ? 'You must be at least 18 to register' : null),
+            tel: (value) => ((value.length !== 9 || isNaN(Number(value))) ? '9 цифр' : null),
+            address: (value) => (value.length < 20 ? 'короткый адрес' : null),
         },
     });
 
@@ -27,18 +27,19 @@ export function OrderModal() {
                     <TextInput
                         label="Телефон"
                         placeholder=""
-                        key={form.key('name')}
-                        {...form.getInputProps('name')}
+                        type='tel'
+                        key={form.key('tel')}
+                        {...form.getInputProps('tel')}
                     />
                     <Textarea
                         mt="sm"
                         label="Адрес"
-                        placeholder=""
-                        key={form.key('email')}
-                        {...form.getInputProps('email')}
+                        placeholder="Полный адрес"
+                        key={form.key('address')}
+                        {...form.getInputProps('address')}
                     />
-                    <Button type="submit" mt="sm">
-                        Submit
+                    <Button type="submit" w={'100%'} mt="sm" className='block mx-auto'>
+                        Оформить
                     </Button>
                 </form>
             </Modal>
