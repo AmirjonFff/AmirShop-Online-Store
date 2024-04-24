@@ -2,7 +2,7 @@ import { Box, Button, CloseButton, Input, Menu, Text } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addSerch } from '../store/slice/cart';
+import { addSerch, removeSearch } from '../store/slice/cart';
 import { RootState } from '../store/store';
 
 export function Search() {
@@ -35,10 +35,10 @@ export function Search() {
                     />
                     <Button onClick={() => dispatch(addSerch(value))} color='#3a539d'>Найты</Button>
                 </Box>
-                <Box className='flex justify-between px-5'>
+                {cart.searchItems.length !== 0 && <Box className='flex justify-between px-5'>
                     <Text className='font-bold text-xl'>Вы раньше искали</Text>
-                    <Button variant='default' className='border-none text-[#3a539d] text-[16px] px-3'>Очистить</Button>
-                </Box>
+                    <Button onClick={() => dispatch(removeSearch(null))} variant='default' className='border-none text-[#3a539d] text-[16px] px-3'>Очистить</Button>
+                </Box>}
                 <Box className='px-4'>
                     {
                         cart.searchItems.map((value, i) =>

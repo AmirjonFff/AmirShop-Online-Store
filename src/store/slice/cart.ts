@@ -29,6 +29,10 @@ const cartSlice = createSlice({
       state.searchItems.push(action.payload)
       localStorage.setItem("searchItems", JSON.stringify(state.searchItems));
     },
+    removeSearch(state, _) {
+      state.searchItems = []
+      localStorage.setItem("searchItems", JSON.stringify(state.searchItems));
+    },
     addToCart(state, action) {
       const existingIndex = state.cartItems.findIndex(
         (item) => item.id === action.payload.id
@@ -118,7 +122,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addSerch, addToCart, decreaseCart, removeFromCart, getTotals, clearCart } =
+export const { addSerch, removeSearch, addToCart, decreaseCart, removeFromCart, getTotals, clearCart } =
   cartSlice.actions;
 
 export default cartSlice.reducer;
