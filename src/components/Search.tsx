@@ -1,13 +1,16 @@
 import { Box, Button, CloseButton, Input, Menu, Text } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addSerch } from '../store/slice/cart';
+import { RootState } from '../store/store';
 
 export function Search() {
     const [value, setValue] = useState('');
+    const dispatch = useDispatch()
 
-    const searchValue = [
-        'Холо', 'sleek', 'cheese'
-    ]
+    const cart = useSelector((state: RootState) => state.cart);
+
     return (
         <Menu width={670} shadow="md">
             <Menu.Target>
@@ -30,7 +33,7 @@ export function Search() {
                             />
                         }
                     />
-                    <Button color='#3a539d'>Найты</Button>
+                    <Button onClick={() => dispatch(addSerch(value))} color='#3a539d'>Найты</Button>
                 </Box>
                 <Box className='flex justify-between px-5'>
                     <Text className='font-bold text-xl'>Вы раньше искали</Text>
@@ -38,7 +41,7 @@ export function Search() {
                 </Box>
                 <Box className='px-4'>
                     {
-                        searchValue.map((value, i) =>
+                        cart.searchItems.map((value, i) =>
                             <Menu.Item key={i} className='text-[16px]'>{value}</Menu.Item>
                         )
                     }

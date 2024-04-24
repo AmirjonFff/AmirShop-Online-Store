@@ -8,15 +8,15 @@ export function OrderModal() {
     const form = useForm({
         mode: 'uncontrolled',
         validateInputOnChange: true,
-        initialValues: { tel: '', address: '' },
-
-        
+        initialValues: { tel: '', address: '' },    
         
         validate: {
             tel: (value) => ((value.length !== 9 || isNaN(Number(value))) ? '9 цифр' : null),
             address: (value) => (value.length < 20 ? 'короткый адрес' : null),
         },
     });
+
+    form.getValues()
 
     return (
         <>

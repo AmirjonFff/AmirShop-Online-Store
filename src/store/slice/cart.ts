@@ -4,11 +4,16 @@ import toast from 'react-hot-toast';
 
 interface CartState {
   cartItems: IMyproduct[],
+  searchItems: string[],
   cartTotalQuantity: number,
   cartTotalAmount: number
 }
 
 const initialState: CartState = {
+  searchItems: localStorage.getItem("searchItems")
+    ? JSON.parse(localStorage.getItem("searchItems") as string)
+    : [],
+
   cartItems: localStorage.getItem("cartItems")
     ? JSON.parse(localStorage.getItem("cartItems") as string)
     : [],
@@ -20,6 +25,10 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    addSerch(state, action) {
+      state.searchItems.push(action.payload)
+      localStorage.setItem("searchItems", JSON.stringify(state.searchItems));
+    },
     addToCart(state, action) {
       const existingIndex = state.cartItems.findIndex(
         (item) => item.id === action.payload.id
@@ -109,7 +118,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, decreaseCart, removeFromCart, getTotals, clearCart } =
+export const { addSerch, addToCart, decreaseCart, removeFromCart, getTotals, clearCart } =
   cartSlice.actions;
 
 export default cartSlice.reducer;
