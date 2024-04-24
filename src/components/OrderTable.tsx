@@ -24,7 +24,7 @@ function OrderTable({ cartItems, handleDecreaseCart, handleAddToCart, handleRemo
             <Table.Tbody>
                 {
                     cartItems && cartItems?.map((product: IMyproduct) =>
-                        <Table.Tr key={product.id} mt={5}>
+                        <Table.Tr key={product.id} h={90} className="">
                             <Table.Td className="w-[80px]">
                                 <Image src={product?.images[0]} />
                             </Table.Td>

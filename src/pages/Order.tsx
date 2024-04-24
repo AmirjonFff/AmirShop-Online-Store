@@ -7,6 +7,7 @@ import OrderTable from "../components/OrderTable";
 import { addToCart, clearCart, decreaseCart, getTotals, removeFromCart } from "../store/slice/cart";
 import { RootState } from "../store/store";
 import { IMyproduct } from "../store/type";
+import { OrderModal } from "../components/OrderModal";
 
 function Order() {
 
@@ -65,7 +66,7 @@ function Order() {
                     <Text className="text-[20px] font-bold">Итого</Text>
                     <Text className="text-[20px] font-bold">{oplataQuantity} c</Text>
                 </Box>
-                <Button color="#3a539d" h={40}>Перейти к оформлению</Button>
+            <OrderModal />
             </Stack>
         </Container>
     );
