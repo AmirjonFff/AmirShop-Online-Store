@@ -20,6 +20,10 @@ export const deviceApi = createApi({
                 return [];
             },
         }),
+        getDeviceName: build.query<IMyCard[], string>({
+            query: (title) => `/products?title=${title}`,
+            providesTags: (result = []) => providesList(result, 'Device'),
+        }),
         getCategories: build.query<ICategory[], void>({
             query: () => `/categories`,
             providesTags: (result = []) => providesList(result, 'Device'),
@@ -31,4 +35,4 @@ export const deviceApi = createApi({
     }),
 });
 
-export const { useGetDeviceQuery, useGetDeviceIdQuery, useGetCategoriesQuery, useGetSearchQuery } = deviceApi;
+export const { useGetDeviceQuery, useGetDeviceIdQuery, useGetCategoriesQuery, useGetSearchQuery, useGetDeviceNameQuery } = deviceApi;
