@@ -7,6 +7,7 @@ export interface CounterState {
   sizeId: number | null;
   isCategor: boolean;
   priceValue: number[] | null[];
+  searchValue: string
 }
 
 const initialState: CounterState = {
@@ -14,7 +15,8 @@ const initialState: CounterState = {
   categoryId: 0,
   sizeId: 0,
   isCategor: false,
-  priceValue: [5, 12000]
+  priceValue: [5, 12000],
+  searchValue: '',
 }
 
 
@@ -36,6 +38,9 @@ export const slice = createSlice({
     },
     handlePriceValue: (state, action: PayloadAction<number[]>) => {
       state.priceValue = action.payload;
+    },
+    handleSearchValue: (state, action: PayloadAction<string>) => {
+      state.searchValue = action.payload;
     }
   },
 })

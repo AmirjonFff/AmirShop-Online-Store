@@ -66,7 +66,7 @@ export function Headroom({ children }: IHeadroom) {
             <Group className="flex gap-7 items-center">
               <Search />
               <Box className="relative cursor-pointer" onClick={() => navigate('order')}>
-                <IconShoppingCart size={27} color="#3D3D3D" />
+                <IconShoppingCart size={27} color={isActive === '/order' ? '#3a539d' : '#3D3D3D'} />
                 {cartTotalQuantity > 0 && <Box className="bg-colLight absolute -top-2 -right-1 font-[500] text-white w-[18px] h-[18px] rounded-full flex items-center justify-center text-[12px]">
                   {cartTotalQuantity}
                 </Box>}
@@ -74,7 +74,6 @@ export function Headroom({ children }: IHeadroom) {
               <Button leftSection={<IconLogin2 size={24} />} color="#3a539d" variant="filled">
                 Авторизоваться
               </Button>
-
             </Group>
           </Group>
         </Container>

@@ -1,4 +1,4 @@
-import { Button, Container } from "@mantine/core";
+import { Box, Button, Container, Stack, Text } from "@mantine/core";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -36,17 +36,37 @@ function Order() {
     if (!cartItems.length) {
         return <OrderNone />
     }
+
+    const oplataQuantity = cartItems.reduce((a, b) => a + (b.cartQuantity * b.price), 0)
+    const deviceQuantity = cartItems.reduce((a, b) => a + (b.cartQuantity), 0)
     return (
-        <Container size={1200} pt={80}>
-            <OrderTable
-                cartItems={cartItems}
-                handleAddToCart={handleAddToCart}
-                handleRemoveFromCart={handleRemoveFromCart}
-                handleDecreaseCart={handleDecreaseCart}
-            />
-            <Button onClick={handleClearCart} variant="default" mt={10}>
-                Очистить корзину
-            </Button>
+        <Container size={1200} pt={80} className="flex justify-between items-start">
+            <Box>
+                <OrderTable
+                    cartItems={cartItems}
+                    handleAddToCart={handleAddToCart}
+                    handleRemoveFromCart={handleRemoveFromCart}
+                    handleDecreaseCart={handleDecreaseCart}
+                />
+                <Button onClick={handleClearCart} variant="default" mt={10}>
+                    Очистить корзину
+                </Button>
+            </Box>
+            <Stack className="w-[300px] bg-colDull rounded-lg p-3 pb-5">
+                <Box className="flex justify-between">
+                    <Text className="text-[15px]">Товары ({deviceQuantity})</Text>
+                    <Text>{oplataQuantity} c</Text>
+                </Box>
+                <Box className="flex justify-between">
+                    <Text className="text-[15px]">Общая сумма доставки</Text>
+                    <Text>{0} c</Text>
+                </Box>
+                <Box className="flex justify-between">
+                    <Text className="text-[20px] font-bold">Итого</Text>
+                    <Text className="text-[20px] font-bold">{oplataQuantity} c</Text>
+                </Box>
+                <Button color="#3a539d" h={40}>Перейти к оформлению</Button>
+            </Stack>
         </Container>
     );
 }

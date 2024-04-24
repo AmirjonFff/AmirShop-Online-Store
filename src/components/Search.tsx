@@ -34,7 +34,7 @@ export function Search() {
                 </Box>
                 <Box className='flex justify-between px-5'>
                     <Text className='font-bold text-xl'>Вы раньше искали</Text>
-                    <Button variant='default' className='border-none text-[#3a539d] text-[16px]'>Очистить</Button>
+                    <Button variant='default' className='border-none text-[#3a539d] text-[16px] px-3'>Очистить</Button>
                 </Box>
                 <Box className='px-4'>
                     {
