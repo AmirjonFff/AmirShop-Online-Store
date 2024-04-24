@@ -17,7 +17,7 @@ export function Search() {
             <Menu.Dropdown style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translate(-50%)', height: '500px' }}>
                 <Box className='flex w-full items-center px-7 py-3 justify-between'>
                     <Input
-                        placeholder="Clearable input"
+                        placeholder="Название товара"
                         value={value}
                         onChange={(event) => setValue(event.currentTarget.value)}
                         rightSectionPointerEvents="all"
