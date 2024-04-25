@@ -7,9 +7,11 @@ import { useGetDeviceNameQuery } from '../store/api/device';
 import { addSerch, addToCart, removeSearch } from '../store/slice/cart';
 import { RootState } from '../store/store';
 import { IMyCard } from '../store/type';
+import { useHeadroom } from '@mantine/hooks';
 
 export function Search() {
     const [value, setValue] = useState('');
+    const pinned = useHeadroom({ fixedAt: 120 });
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -20,13 +22,16 @@ export function Search() {
         dispatch(addToCart(product));
     };
 
+    const lengthSearch = cart.searchItems.length
+    const isSearch = lengthSearch !== 0 && !value
+
     return (
         <Menu width={670} shadow="md">
             <Menu.Target>
                 <IconSearch cursor="pointer" size={27} color="#3D3D3D" />
             </Menu.Target>
 
-            <Menu.Dropdown style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translate(-50%)', height: '500px' }}>
+            <Menu.Dropdown mt={pinned ? 0 : 25} pb={20} style={{ transform: 'translate(-50%)' }}>
                 <Box className='flex w-full items-center px-7 py-3 justify-between'>
                     <Input
                         placeholder="Название товара"
@@ -44,31 +49,32 @@ export function Search() {
                     />
                     <Button onClick={() => dispatch(addSerch(value))} color='#3a539d'>Найты</Button>
                 </Box>
-                {(cart.searchItems.length !== 0 && !value) &&
+                {isSearch &&
                     <Box>
                         <Box className='flex justify-between px-5'>
-                            <Title className='font-bold text-xl'>Вы раньше искали</Title>
+                            <Title size={20} className='font-bold'>Вы раньше искали</Title>
                             <Button onClick={() => dispatch(removeSearch(null))} variant='default' className='border-none text-[#3a539d] text-[16px] px-3'>Очистить</Button>
                         </Box>
                         <Box className='px-4'>
                             {
                                 cart.searchItems.map((value, i) =>
-                                    <Menu.Item key={i} className='text-[16px]'>{value}</Menu.Item>
+                                    <Menu.Item h={30} key={i} className='text-[16px]'>{value}</Menu.Item>
                                 )
                             }
                         </Box>
                     </Box>}
-                <Box mt={'xl'} className='px-7'>
+                <Box mt={45} className='px-7'>
+                    {!value && <Title size={20}>Хиты продаж</Title>}
                     {
-                        data?.map(el =>
+                        data?.slice(0, 4 - (!value ? (lengthSearch < 3 ? lengthSearch : 2) : 0)).map(el =>
                             <Box key={el.id} mt={'md'} className='text-[16px] flex justify-between'>
-                                <Box className='flex cursor-pointer' onClick={() => navigate(`device/${el.id}`)}>
-                                    <Box w={100}>
+                                <Box className='flex cursor-pointer gap-3' onClick={() => navigate(`device/${el.id}`)}>
+                                    <Box w={70}>
                                         <Image src={el.images[0]} />
                                     </Box>
                                     <Stack>
                                         <Title size={18}>{el.title}</Title>
-                                        <Title size={18}>{el.price}</Title>
+                                        <Title size={18}>{el.price} c</Title>
                                     </Stack>
                                 </Box>
                                 <Button variant='default' onClick={() => handleAddToCart(el)}>В корзину</Button>
