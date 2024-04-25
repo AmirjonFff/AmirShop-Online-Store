@@ -1,4 +1,4 @@
-import { Button, Tabs } from '@mantine/core';
+import { Box, Button, Tabs } from '@mantine/core';
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,17 +28,19 @@ export function SexTab() {
     ]
 
     return (
-        <div className='flex justify-between'>
+        <Box className='flex justify-between'>
             <Button onClick={tagleIcon} leftSection={isCategor ? <IconX size={18} /> : <IconMenu2 size={18} />} variant="default">
                 Каталог товаров
             </Button>
             <Tabs className='w-[74%]' defaultValue="first" value={activeTab} onChange={setActiveTab}>
                 <Tabs.List grow className='w-full' justify="center">
-                    {sexTab.map(sex =>
-                        <Tabs.Tab className={`${activeTab === sex.pos && "border-colLight font-bold text-colLight"}`} key={sex.pos} value={sex.pos}>{sex.name}</Tabs.Tab>
+                    {sexTab.map(sex => {
+                        // dispach(handleCategoryId(activeTab === 'first' ? 0 : 0))
+                        return <Tabs.Tab className={`${activeTab === sex.pos && "border-colLight font-bold text-colLight"}`} key={sex.pos} value={sex.pos}>{sex.name}</Tabs.Tab>
+                    }
                     )}
                 </Tabs.List>
             </Tabs>
-        </div>
+        </Box>
     )
 }

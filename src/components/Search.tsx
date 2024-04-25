@@ -64,13 +64,13 @@ export function Search() {
                             }
                         </Box>
                     </Box>}
-                <Box mt={45} className='px-7'>
+                <Box mt={45} px={20}>
                     {!value && <Title size={20}>Хиты продаж</Title>}
                     {
                         data?.slice(0, 4 - (!value ? (lengthSearch < 3 ? lengthSearch : 2) : 0)).map(el =>
                             <Box key={el.id} mt={'md'} className='text-[16px] flex justify-between'>
                                 <Box className='flex cursor-pointer gap-3' onClick={() => navigate(`device/${el.id}`)}>
-                                    <Menu.Item w={70}>
+                                    <Menu.Item w={70} p={0}>
                                         <Image src={el.images[0]} />
                                     </Menu.Item>
                                     <Menu.Item>

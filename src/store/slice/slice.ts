@@ -6,7 +6,7 @@ export interface CounterState {
   categoryId: number | null;
   sizeId: number | null;
   isCategor: boolean;
-  priceValue: number[] | null[];
+  priceValue: number[] | string[];
   searchValue: string
 }
 
@@ -15,7 +15,7 @@ const initialState: CounterState = {
   categoryId: 0,
   sizeId: 0,
   isCategor: false,
-  priceValue: [5, 12000],
+  priceValue: [0, 0],
   searchValue: '',
 }
 

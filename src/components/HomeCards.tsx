@@ -11,11 +11,13 @@ function HomeCards() {
     const priceValue = useSelector(({ shop }: any) => shop.priceValue)
 
     const { data: searchData, isLoading } = useGetSearchQuery({ title: '', price_min: priceValue[0], price_max: priceValue[1], categoryId: categoryId });
+    console.log(searchData);
+
 
     return (
         <Box className="flex w-full gap-6">
             {isCategor ? <Categories /> : null}
-            <Box className={`grid mt-10 ${isCategor ? 'grid-cols-3 gap-x-9' : 'grid-cols-4 gap-x-9'} gap-y-12`}>
+            <Box className={`w-full grid mt-10 ${isCategor ? 'grid-cols-3 gap-x-9 grid-rows-3' : 'grid-cols-4 gap-x-9'} gap-y-12`}>
                 {isLoading ?
                     [...new Array(8)].map((_, i) =>
                         <Box key={i} className="w-full">
@@ -27,7 +29,7 @@ function HomeCards() {
                         </Box>
                     )
                     :
-                    searchData?.slice(1, isCategor ? 10 : 13).map(card =>
+                    searchData?.slice(0, isCategor ? 9 : 12).map(card =>
                         <MyCard card={card} key={card.id} />
                     )
                 }
