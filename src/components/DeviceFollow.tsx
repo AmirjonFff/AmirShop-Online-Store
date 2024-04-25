@@ -23,7 +23,7 @@ function DeviceFollow({ data, isLoading }: { data: IMyCard | undefined, isLoadin
     };
 
     const sss = cart.cartItems.find(el => el.id === data?.id)?.cartQuantity
-    // const oplata = isGal(data?.id) ? (sss * data?.price) : data?.price
+    const oplata = isGal(data?.id) ? ((sss ?? 0) * (data?.price ?? 0)) : data?.price;
 
     return (
         <Box className="w-full">
@@ -59,7 +59,7 @@ function DeviceFollow({ data, isLoading }: { data: IMyCard | undefined, isLoadin
                     <Box className="flex gap-5 items-center mt-5">
                         <HandleQuantity quantity={newData?.cartQuantity ? newData?.cartQuantity : 1} increment={increment} decrement={decrement} />
                         <Button disabled={isGal(data?.id)} onClick={() => handleAddToCart(data)} color="#3a539d">В КАРЗИНУ</Button>
-                        <OrderModal oplata={sss} bool={true} />
+                        <OrderModal oplata={oplata} bool={true} />
                     </Box>
                     <Box className="flex items-center mt-5 gap-2"> <Title className="text-[17px]">Категории: </Title> <span className="text-[15px] text-[#727272]">{data?.category.name}</span> </Box>
                     <Box className="flex items-center mt-3 gap-2"> <Title className="text-[17px]">Поделитесь этими продуктами: </Title> <Box className="flex gap-2">
