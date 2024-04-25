@@ -25,7 +25,7 @@ export function OrderModal({ oplata }: { oplata: number }) {
                 <FocusTrap.InitialFocus />
 
                 <Box mb={15} className='flex justify-between'>
-                    <Title px={0} size={20}>Итого: {oplata} c</Title>
+                    <Title px={0} size={18}>Итого: {oplata} c</Title>
                     <Tabs variant="unstyled" defaultValue="settings" classNames={classes}>
                         <Tabs.List grow>
                             <Tabs.Tab
@@ -62,7 +62,7 @@ export function OrderModal({ oplata }: { oplata: number }) {
                         key={form.key('address')}
                         {...form.getInputProps('address')}
                     />
-                    <Button type="submit" w={'100%'} mt="sm" className='block mx-auto'>
+                    <Button color='#3a539d' type="submit" w={'100%'} mt="sm">
                         Оформить
                     </Button>
                 </form>

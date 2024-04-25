@@ -1,4 +1,5 @@
-import { Box, Button, CloseButton, Image, Input, Menu, Stack, Title } from '@mantine/core';
+import { Box, Button, CloseButton, Image, Input, Menu, Title } from '@mantine/core';
+import { useHeadroom } from '@mantine/hooks';
 import { IconSearch } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +8,6 @@ import { useGetDeviceNameQuery } from '../store/api/device';
 import { addSerch, addToCart, removeSearch } from '../store/slice/cart';
 import { RootState } from '../store/store';
 import { IMyCard } from '../store/type';
-import { useHeadroom } from '@mantine/hooks';
 
 export function Search() {
     const [value, setValue] = useState('');
@@ -17,6 +17,7 @@ export function Search() {
 
     const { data } = useGetDeviceNameQuery(value);
     const cart = useSelector((state: RootState) => state.cart);
+    const isGal = (id: number) => !!cart.cartItems.find(el => el.id === id)
 
     const handleAddToCart = (product: IMyCard) => {
         dispatch(addToCart(product));
@@ -69,15 +70,15 @@ export function Search() {
                         data?.slice(0, 4 - (!value ? (lengthSearch < 3 ? lengthSearch : 2) : 0)).map(el =>
                             <Box key={el.id} mt={'md'} className='text-[16px] flex justify-between'>
                                 <Box className='flex cursor-pointer gap-3' onClick={() => navigate(`device/${el.id}`)}>
-                                    <Box w={70}>
+                                    <Menu.Item w={70}>
                                         <Image src={el.images[0]} />
-                                    </Box>
-                                    <Stack>
+                                    </Menu.Item>
+                                    <Menu.Item>
                                         <Title size={18}>{el.title}</Title>
                                         <Title size={18}>{el.price} c</Title>
-                                    </Stack>
+                                    </Menu.Item>
                                 </Box>
-                                <Button variant='default' onClick={() => handleAddToCart(el)}>В корзину</Button>
+                                <Button disabled={isGal(el.id)} variant='default' onClick={() => handleAddToCart(el)}>В корзину</Button>
                             </Box>
                         )
                     }
