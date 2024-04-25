@@ -3,7 +3,7 @@ import { useForm } from '@mantine/form';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './Demo.module.css';
 
-export function OrderModal({ oplata }: { oplata: number }) {
+export function OrderModal({ oplata, bool }: { oplata: number | undefined, bool?: boolean }) {
     const [opened, { open, close }] = useDisclosure(false);
 
     const form = useForm({
@@ -67,7 +67,7 @@ export function OrderModal({ oplata }: { oplata: number }) {
                     </Button>
                 </form>
             </Modal>
-            <Button onClick={open} color="#3a539d" h={40}>Перейти к оформлению</Button>
+            <Button onClick={open} variant={bool ? 'default' : ''} className={`${bool && 'border-colLight text-colLight -ml-2'}`} color="#3a539d" h={!bool ? 40 : 37}>{bool ? 'КУПИТ СЕЙЧАС' : 'Перейти к оформлению'}</Button>
         </>
     );
 }
