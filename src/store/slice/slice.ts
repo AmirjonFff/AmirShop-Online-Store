@@ -7,7 +7,7 @@ export interface CounterState {
   sizeId: number | null;
   isCategor: boolean;
   priceValue: number[] | string[];
-  searchValue: string
+  searchValue: string,
 }
 
 const initialState: CounterState = {
@@ -45,6 +45,6 @@ export const slice = createSlice({
   },
 })
 
-export const { SetNameNav, handleCategoryId, handleIsCategor, handlePriceValue } = slice.actions
+export const { SetNameNav, handleCategoryId, handleIsCategor, handlePriceValue, handleSearchValue } = slice.actions
 
 export default slice.reducer

@@ -8,6 +8,7 @@ import { useGetDeviceNameQuery } from '../store/api/device';
 import { addSerch, addToCart, removeSearch } from '../store/slice/cart';
 import { RootState } from '../store/store';
 import { IMyCard } from '../store/type';
+import { handleSearchValue } from '../store/slice/slice';
 
 export function Search() {
     const [value, setValue] = useState('');
@@ -49,7 +50,11 @@ export function Search() {
                             />
                         }
                     />
-                    <Button onClick={() => dispatch(addSerch(value))} color='#3a539d'>Найты</Button>
+                    <Button onClick={() => {
+                        dispatch(handleSearchValue(value)),
+                            dispatch(addSerch(value)),
+                            navigate('/shop')
+                    }} color='#3a539d'>Найты</Button>
                 </Box>
                 {isSearch &&
                     <Box>
@@ -68,20 +73,21 @@ export function Search() {
                 <Box mt={45} px={20}>
                     {!value && <Title size={20}>Хиты продаж</Title>}
                     {
-                        data?.slice(0, 4 - (!value ? (lengthSearch < 3 ? lengthSearch : 2) : 0)).map(el =>
-                            <Box key={el.id} mt={'md'} className='text-[16px] flex justify-between'>
-                                <Box className='flex cursor-pointer gap-3' onClick={() => navigate(`device/${el.id}`)}>
-                                    <Menu.Item w={70} p={0}>
-                                        <Image src={el.images[0]} />
-                                    </Menu.Item>
-                                    <Menu.Item>
-                                        <Title size={18}>{el.title}</Title>
-                                        <Title size={18}>{el.price} c</Title>
-                                    </Menu.Item>
+                        data?.length === 0 ? <Title size={20}>Ничего не найдено</Title>
+                            : data?.slice(0, 4 - (!value ? (lengthSearch < 3 ? lengthSearch : 2) : 0)).map(el =>
+                                <Box key={el.id} mt={'md'} className='text-[16px] flex justify-between'>
+                                    <Box className='flex cursor-pointer gap-3' onClick={() => navigate(`device/${el.id}`)}>
+                                        <Menu.Item w={70} p={0}>
+                                            <Image src={el.images[0]} />
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            <Title size={18}>{el.title}</Title>
+                                            <Title size={18}>{el.price} c</Title>
+                                        </Menu.Item>
+                                    </Box>
+                                    <Button disabled={isGal(el.id)} variant='default' onClick={() => handleAddToCart(el)}>В корзину</Button>
                                 </Box>
-                                <Button disabled={isGal(el.id)} variant='default' onClick={() => handleAddToCart(el)}>В корзину</Button>
-                            </Box>
-                        )
+                            )
                     }
                 </Box>
             </Menu.Dropdown>

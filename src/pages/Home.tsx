@@ -1,13 +1,13 @@
-import { Container } from '@mantine/core'
-import HomeDevices from '../components/HomeDevices'
-import HomeStart from '../components/HomeStart'
+import { Container } from '@mantine/core';
 import { Toaster } from 'react-hot-toast';
+import HomeDevice from '../components/HomeDevice';
+import HomeStart from '../components/HomeStart';
 
 function Home() {
   return (
     <Container size={1200} pt={10}>
       <HomeStart />
-      <HomeDevices />
+      <HomeDevice />
       <Toaster
         position="top-right"
         reverseOrder={true}
