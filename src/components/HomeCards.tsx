@@ -1,18 +1,22 @@
 import { Box, Skeleton } from "@mantine/core";
 import { useSelector } from "react-redux";
 import { useGetSearchQuery } from "../store/api/device";
+import { RootState } from "../store/store";
 import { MyCard } from "./Card";
 import Categories from "./Categories";
 
 function HomeCards() {
 
-    const categoryId = useSelector(({ shop }: any) => shop.categoryId)
-    const isCategor = useSelector(({ shop }: any) => shop.isCategor)
-    const priceValue = useSelector(({ shop }: any) => shop.priceValue)
+    const { categoryId, isCategor, priceValue } = useSelector((state: RootState) => state.shop)
 
-    const { data: searchData, isLoading } = useGetSearchQuery({ title: '', price_min: priceValue[0], price_max: priceValue[1], categoryId: categoryId });
-    console.log(searchData);
+    const objSearch = {
+        title: '',
+        price_min: priceValue[0],
+        price_max: priceValue[1],
+        categoryId: categoryId
+    }
 
+    const { data, isLoading } = useGetSearchQuery(objSearch);
 
     return (
         <Box className="flex w-full gap-6">
@@ -29,11 +33,10 @@ function HomeCards() {
                         </Box>
                     )
                     :
-                    searchData?.slice(0, isCategor ? 9 : 12).map(card =>
+                    data?.slice(0, isCategor ? 9 : 12).map(card =>
                         <MyCard card={card} key={card.id} />
                     )
                 }
-
             </Box>
         </Box>
     )

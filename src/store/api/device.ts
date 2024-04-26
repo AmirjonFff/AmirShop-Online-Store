@@ -2,6 +2,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { providesList } from '../cash';
 import { ICategory, IMyCard, ISearch } from '../type';
 
+const funcSearch = (q: ISearch) => {
+    const arr = Object.keys(q)
+    return Array.from(arr, (x) => x + '=' + q[x as keyof ISearch]).join('&');
+}
 
 export const deviceApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'https://api.escuelajs.co/api/v1/' }),
@@ -29,7 +33,7 @@ export const deviceApi = createApi({
             providesTags: (result = []) => providesList(result, 'Device'),
         }),
         getSearch: build.query<IMyCard[], ISearch>({
-            query: ({ title, price_min, price_max, categoryId }) => `/products?title=${title}&price_min=${price_min}&price_max=${price_max}&categoryId=${categoryId}`,
+            query: (q) => `/products?t${funcSearch(q)}`,
             providesTags: (result = []) => providesList(result, 'Device'),
         }),
     }),

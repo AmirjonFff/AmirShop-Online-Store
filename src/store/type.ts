@@ -27,7 +27,7 @@ export interface IMyproduct extends IMyCard {
 
 export interface ISearch {
   title: string,
-  price_min: number,
-  price_max: number,
-  categoryId: number
+  price_min: number | string,
+  price_max: number | string,
+  categoryId: number 
 }

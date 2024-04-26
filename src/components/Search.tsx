@@ -25,6 +25,7 @@ export function Search() {
 
     const lengthSearch = cart.searchItems.length
     const isSearch = lengthSearch !== 0 && !value
+    const searchData = [...new Set(cart.searchItems)]
 
     return (
         <Menu width={670} shadow="md">
@@ -58,7 +59,7 @@ export function Search() {
                         </Box>
                         <Box className='px-4'>
                             {
-                                cart.searchItems.map((value, i) =>
+                                searchData.map((value, i) =>
                                     <Menu.Item h={30} key={i} className='text-[16px]'>{value}</Menu.Item>
                                 )
                             }

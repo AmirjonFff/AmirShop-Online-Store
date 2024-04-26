@@ -17,8 +17,7 @@ export function Headroom({ children }: IHeadroom) {
 
 
   const pinned = useHeadroom({ fixedAt: 120 });
-  console.log(pinned);
-  
+
   const location = useLocation();
   const isActive = location.pathname;
   const navigate = useNavigate();
@@ -49,7 +48,6 @@ export function Headroom({ children }: IHeadroom) {
       path: '/about'
     }
   ]
-
 
   return (
     <AppShell header={{ height: 85, collapsed: !pinned, offset: false }} padding="md">

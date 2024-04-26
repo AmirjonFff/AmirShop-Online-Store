@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export interface CounterState {
   nameNav: string;
-  categoryId: number | null;
+  categoryId: number;
   sizeId: number | null;
   isCategor: boolean;
   priceValue: number[] | string[];
