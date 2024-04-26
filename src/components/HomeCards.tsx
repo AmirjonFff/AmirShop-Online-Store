@@ -25,10 +25,10 @@ function HomeCards() {
                 {isLoading ?
                     [...new Array(8)].map((_, i) =>
                         <Box key={i} className="w-full">
-                            <Skeleton className="h-[250px]">
+                            <Skeleton h={270}>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora, amet.
                             </Skeleton>
-                            <Skeleton className="mt-5 w-[90%] mx-auto h-[80px]">
+                            <Skeleton mt={10} w={'90%'} mx={'auto'} h={80}>
                             </Skeleton>
                         </Box>
                     )
