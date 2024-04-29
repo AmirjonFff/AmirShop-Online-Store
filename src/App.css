@@ -21,7 +21,7 @@
 }
 
 .myCard:hover .myPrice {
-  bottom: 5px;
+  bottom: 7px;
 }
 
 .btnDis {
@@ -38,7 +38,7 @@
     cursor: not-allowed;
     /* Другие стили для отключенной кнопки */
   }
-  
+
 }
 
 /* Footer */

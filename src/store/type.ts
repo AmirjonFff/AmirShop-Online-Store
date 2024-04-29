@@ -18,8 +18,8 @@ export interface ICategory {
   id: number;
   name: string;
   image: string;
-  creationAt: string;
-  updatedAt: string;
+  creationAt?: string;
+  updatedAt?: string;
 }
 export interface IMyproduct extends IMyCard {
   cartQuantity: number;
@@ -29,5 +29,5 @@ export interface ISearch {
   title: string,
   price_min: number | string,
   price_max: number | string,
-  categoryId: number 
+  categoryId: number
 }

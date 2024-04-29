@@ -1,8 +1,9 @@
 import { Carousel, Embla } from '@mantine/carousel';
 import '@mantine/carousel/styles.css';
+import { Box, Progress } from '@mantine/core';
 import { useCallback, useEffect, useState } from 'react';
-import { Progress } from '@mantine/core';
 import { IMyCard } from '../store/type';
+import { MyCard } from './Card';
 
 interface ICalouserHome {
     data: IMyCard[] | undefined
@@ -31,14 +32,16 @@ export function CalouserHome({ data }: ICalouserHome) {
                 dragFree
                 slideSize="25%"
                 slideGap="md"
-                height={200}
+                align="start"
                 getEmblaApi={setEmbla}
                 initialSlide={2}
             >
                 {
                     data?.map(el =>
-                        <Carousel.Slide>
-                            {el.title}
+                        <Carousel.Slide key={el.id}>
+                            <Box my={10} h={380} w={250}>
+                                <MyCard card={el} />
+                            </Box>
                         </Carousel.Slide>
                     )
                 }
