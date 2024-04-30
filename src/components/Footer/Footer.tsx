@@ -2,43 +2,53 @@ import { Box, Container, Stack, Text, Title } from '@mantine/core';
 import { IconBrandFacebook, IconBrandInstagram, IconBrandTelegram } from '@tabler/icons-react';
 import Logo from '../Logo';
 import classes from './FooterLinks.module.css';
+import { useGetCategoriesQuery } from '../../store/api/device';
 
-const data = [
-    {
-        title: 'Категории',
-        links: [
-            { label: 'Features', link: '#' },
-            { label: 'Pricing', link: '#' },
-            { label: 'Support', link: '#' },
-            { label: 'Forums', link: '#' },
-        ],
-    },
-    {
-        title: 'Project',
-        links: [
-            { label: 'Contribute', link: '#' },
-            { label: 'Media assets', link: '#' },
-            { label: 'Changelog', link: '#' },
-            { label: 'Releases', link: '#' },
-        ],
-    },
-    {
-        title: 'Контакты',
-        links: [
-            { label: '+992 91 744 7517', link: '#' },
-            { label: '@aking_0102', link: '#' },
-            { label: 'amirjonif@gmail.com', link: '#' },
-            { label: 'AmirjonFff', link: '#' },
-        ],
-    },
-];
+
 
 export function Footer() {
+
+    const { data: dataCategor } = useGetCategoriesQuery()
+
+    const data = [
+        {
+            title: 'Категории',
+            links: [
+                { label: dataCategor && dataCategor[0].name, link: '#' },
+                { label: dataCategor && dataCategor[1].name, link: '#' },
+                { label: dataCategor && dataCategor[2].name, link: '#' },
+                { label: dataCategor && dataCategor[3].name, link: '#' },
+            ],
+        },
+        {
+            title: 'Project',
+            links: [
+                { label: 'amir-my-portfolio', link: '#' },
+                { label: 'avesto-jobs-front-admin', link: '#' },
+                { label: 'af-online-store', link: '#' },
+            ],
+        },
+        {
+            title: 'Контакты',
+            links: [
+                { label: '+992 91 744 7517', link: '#' },
+                { label: '@aking_0102', link: 'https://web.telegram.org/k/#@aking_0102' },
+                { label: 'amirjonif@gmail.com', link: '#' },
+                { label: 'AmirjonFff', link: '#' },
+            ],
+        },
+    ];
+
+    const navLink = (link: string) => {
+        window.location.href = link;
+    };
+
     const groups = data.map((group) => {
         const links = group.links.map((link, index) => (
             <Text
+                href={link.link}
                 key={index}
-                className={classes.link}
+                className={`${classes.link} cursor-pointer`}
                 component="a"
                 onClick={(event) => event.preventDefault()}
             >
@@ -70,9 +80,9 @@ export function Footer() {
                     <Stack gap={4}>
                         <Title className={classes.title}>Мы в соцмедиа</Title>
                         <Box className='flex gap-4'>
-                            <IconBrandTelegram size={40} className='text-colLight cursor-pointer' />
-                            <IconBrandInstagram size={40} className='text-colLight cursor-pointer' />
-                            <IconBrandFacebook size={40} className='text-colLight cursor-pointer' />
+                            <IconBrandTelegram onClick={() => navLink('https://web.telegram.org/k/#@aking_0102')} size={40} className='text-colLight cursor-pointer' />
+                            <IconBrandInstagram onClick={() => navLink('https://www.instagram.com/amin.khuroson/')} size={40} className='text-colLight cursor-pointer' />
+                            <IconBrandFacebook onClick={() => navLink('https://www.facebook.com/')} size={40} className='text-colLight cursor-pointer' />
                         </Box>
                     </Stack>
                 </Box>

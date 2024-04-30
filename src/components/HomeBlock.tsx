@@ -6,14 +6,14 @@ import CategorBlock from "./CategorBlock";
 interface IHomeBlock {
     title: string
     data: (IMyCard[] | undefined) | (ICategory[] | undefined)
-    iscat?: boolean
+    type?: string
 }
 
-function HomeBlock({ title, data, iscat }: IHomeBlock) {
+function HomeBlock({ title, data, type }: IHomeBlock) {
     return (
         <Box>
             <Title mb={20} size={25}>{title}</Title>
-            {iscat ? <CategorBlock data={data as ICategory[]} /> : <CalouserHome data={data as IMyCard[]} />}
+            {type !== 'product' ? <CategorBlock type={type} data={data as ICategory[]} /> : <CalouserHome data={data as IMyCard[]} />}
         </Box>
     )
 }

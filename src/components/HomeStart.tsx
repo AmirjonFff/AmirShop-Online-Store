@@ -1,7 +1,9 @@
 import { Button, Grid } from '@mantine/core'
 import MySwiper from './Swiper'
+import { useNavigate } from 'react-router-dom'
 
 function HomeStart() {
+    const navigate = useNavigate()
     return (
         <div className='bg-colDull mt-5'>
             <Grid justify="center">
@@ -12,7 +14,7 @@ function HomeStart() {
                         Better <span className='text-[#3a539d]'>Planet</span>
                     </h1>
                     <p className='text-[#727272] text-[14px]'>Освежите свой стиль! Интернет-магазин модной одежды для смелых и стильных. Покупайте легко и удобно прямо сейчас</p>
-                    <Button className='mt-[50px] uppercase' size='md' color="#3a539d" variant="filled">
+                    <Button onClick={() => navigate('/shop')} className='mt-[50px] uppercase' size='md' color="#3a539d" variant="filled">
                         Купить сейчас
                     </Button>
                 </Grid.Col>

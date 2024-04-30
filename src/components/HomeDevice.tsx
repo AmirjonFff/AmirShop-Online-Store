@@ -36,28 +36,36 @@ function HomeDevice() {
 
     ]
 
+    // const arr = [{ name: 'csasas', price: 5.3 }, { name: 'asasas', price: 3.5 }, { name: 'bsasas', price: 4.4 }]
+
+    const dataNew = data ? [...data].sort((a, b) => a?.price - b?.price) : undefined
+    console.log(dataNew);
+
+
+
     const titleData = [
         {
             title: 'Популярные категории',
             data: dataCat,
-            iscat: true
+            type: 'category'
         },
         {
             title: 'Лучшие новинки',
             data,
-            iscat: false
+            type: 'product'
         },
         {
             title: 'Полезные статьи',
-            data,
-            iscat: false
+            data: dataNew,
+            type: 'product'
         },
         {
             title: 'Популярные бренды',
             data: dataBrend,
-            iscat: true
+            type: 'brand'
         },
     ]
+
     return (
         <Box mt={60} className="flex flex-col gap-[35px] pb-16">
             {
@@ -68,5 +76,4 @@ function HomeDevice() {
         </Box>
     )
 }
-
 export default HomeDevice

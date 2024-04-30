@@ -1,13 +1,18 @@
 import { Box, Image, Title } from "@mantine/core"
 import { ICategory } from "../store/type"
+import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { handleCategoryId } from "../store/slice/slice"
 
-function CategorBlock({ data }: { data: ICategory[] | undefined }) {
+function CategorBlock({ data, type }: { data: ICategory[] | undefined, type: string | undefined }) {
 
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     return (
         <Box className="grid grid-cols-5 gap-3">
             {
                 data?.map((cat, i) =>
-                    <Box className="shadow-lg p-3 cursor-pointer" key={i}>
+                    <Box onClick={() => { type === 'category' && (navigate('/shop'), dispatch(handleCategoryId(cat.id))) }} className="shadow-lg p-3 cursor-pointer" key={i}>
                         <Box h={70}>
                             <Image className="object-contain" h={'100%'} src={cat.image} />
                         </Box>
