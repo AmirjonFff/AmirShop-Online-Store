@@ -1,9 +1,11 @@
+import { Container } from "@mantine/core"
+import HomeCards from "../components/HomeCards"
 
 function Stock() {
     return (
-        <div>
-            Stock
-        </div>
+        <Container size={1200}>
+            <HomeCards isStac={true} />
+        </Container>
     )
 }
 

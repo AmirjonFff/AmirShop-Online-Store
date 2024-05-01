@@ -10,9 +10,8 @@ import HoverSlider from './HoverSlider';
 
 
 
-export function MyCard({ card }: { card: IMyCard }) {
+export function MyCard({ card, isStock }: { card: IMyCard, isStock?: boolean }) {
     const dispatch = useDispatch()
-
     const navigate = useNavigate()
 
     const handleAddToCart = (product: IMyCard) => {
@@ -22,11 +21,19 @@ export function MyCard({ card }: { card: IMyCard }) {
     const cart = useSelector((state: RootState) => state.cart);
     const isGal = (id: number) => !!cart.cartItems.find(el => el.id === id)
 
+    const ss = Math.round((card.price * 100) / 70)
+
     return (
         <Card h={'100%'} shadow="sm" className='w-full cursor-pointer myCard border-none' padding="lg" radius="md" withBorder>
             <Card.Section onClick={() => navigate('/device/' + card.id)} h={267} className='flex relative justify-center items-center bg-colDull'>
                 <HoverSlider image={card.images} />
-                <Box className='bg-white absolute bottom-0 left-[6px] px-2 myPrice'>{card.price} c</Box>
+                {isStock && <Box>
+                    <Box className='absolute text-[13px] line-through text-slate-500 bg-colDull  -bottom-5 left-[9px] px-2'>{ss} c</Box>
+                    <Box className='absolute text-[14px] w-[100px] bg-colLight -rotate-[55deg] h-[100px] text-white   -top-16 -right-12 px-2'></Box>
+                    <Text className='absolute text-[14px] text-white   top-[1px] -right-1 px-2'>-30 %</Text>
+                </Box>
+                }
+                <Box className='bg-white absolute  bottom-0 left-[6px] px-2 myPrice'>{card.price} c</Box>
             </Card.Section>
             <Group onClick={() => navigate('/device/' + card.id)} justify="space-between" mt="md" mb="xs">
                 <Text fw={500}>{card.title.length < 28 ? card.title : `${card.title.slice(0, 40)}...`}</Text>

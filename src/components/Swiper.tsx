@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -6,7 +7,11 @@ import 'swiper/css/pagination';
 
 import { Autoplay, Navigation } from 'swiper/modules';
 
+
 export default function MySwiper() {
+
+    const navigate = useNavigate();
+
     return (
         <div className='h-[500px]'>
             <Swiper
@@ -21,8 +26,8 @@ export default function MySwiper() {
                 modules={[Autoplay, Navigation]}
                 className="mySwiper"
             >
-                <SwiperSlide className='bg-transparent'><img className='h-[90%] object-center' src="image/home/обув.png" alt="" /></SwiperSlide>
-                <SwiperSlide className='bg-transparent'><img className='h-[90%] object-center' src="image/home/одежда.png" alt="" /></SwiperSlide>
+                <SwiperSlide onClick={() => navigate('/shop')} className='bg-transparent cursor-pointer'><img className='h-[90%] object-center' src="image/home/обув.png" alt="" /></SwiperSlide>
+                <SwiperSlide onClick={() => navigate('/shop')} className='bg-transparent cursor-pointer'><img className='h-[90%] object-center' src="image/home/одежда.png" alt="" /></SwiperSlide>
             </Swiper>
         </div>
     );

@@ -2,12 +2,14 @@ import { Box, Button, Tabs } from '@mantine/core';
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { handleIsCategor } from '../store/slice/slice';
+import { handleCategoryId, handleIsCategor } from '../store/slice/slice';
 
 export function SexTab() {
     const [activeTab, setActiveTab] = useState<string | null>('first');
+
     const dispach = useDispatch()
     const isCategor = useSelector(({ shop }: any) => shop.isCategor)
+
     const tagleIcon = () => {
         dispach(handleIsCategor(!isCategor))
     }
@@ -35,8 +37,7 @@ export function SexTab() {
             <Tabs className='w-[74%]' defaultValue="first" value={activeTab} onChange={setActiveTab}>
                 <Tabs.List grow className='w-full' justify="center">
                     {sexTab.map(sex => {
-                        // dispach(handleCategoryId(activeTab === 'first' ? 0 : 0))
-                        return <Tabs.Tab className={`${activeTab === sex.pos && "border-colLight font-bold text-colLight"}`} key={sex.pos} value={sex.pos}>{sex.name}</Tabs.Tab>
+                        return <Tabs.Tab onClick={() => sex.pos === 'first' && dispach(handleCategoryId(0))} className={`${activeTab === sex.pos && "border-colLight font-bold text-colLight"}`} key={sex.pos} value={sex.pos}>{sex.name}</Tabs.Tab>
                     }
                     )}
                 </Tabs.List>
