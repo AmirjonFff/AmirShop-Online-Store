@@ -5,7 +5,7 @@ import { useGetCategoriesQuery, useGetDeviceQuery } from "../store/api/device"
 function HomeDevice() {
 
     const { data } = useGetDeviceQuery()
-    const { data: dataCat } = useGetCategoriesQuery()
+    const { data: dataCat, isLoading } = useGetCategoriesQuery()
 
     const dataBrend = [
         {
@@ -36,11 +36,8 @@ function HomeDevice() {
 
     ]
 
-    // const arr = [{ name: 'csasas', price: 5.3 }, { name: 'asasas', price: 3.5 }, { name: 'bsasas', price: 4.4 }]
-
     const dataNew = data ? [...data].sort((a, b) => a?.price - b?.price) : undefined
     console.log(dataNew);
-
 
 
     const titleData = [
@@ -70,7 +67,7 @@ function HomeDevice() {
         <Box mt={60} className="flex flex-col gap-[35px] pb-16">
             {
                 titleData.map((title, i) =>
-                    <HomeBlock key={i} {...title} />
+                    <HomeBlock isLoading={isLoading} key={i} {...title} />
                 )
             }
         </Box>
