@@ -25,7 +25,7 @@ export function MyCard({ card, isStock }: { card: IMyCard, isStock?: boolean }) 
 
     return (
         <Card h={'100%'} shadow="sm" className='w-full cursor-pointer myCard border-none' padding="lg" radius="md" withBorder>
-            <Card.Section onClick={() => navigate('/device/' + card.id)} h={267} className='flex relative justify-center items-center bg-colDull'>
+            <Card.Section onClick={() => navigate('/device/' + card.id)} className='flex h-[200px] md:h-[267px] relative justify-center items-center bg-colDull'>
                 <HoverSlider image={card.images} />
                 {isStock && <Box>
                     <Box className='absolute text-[13px] line-through text-slate-500 bg-colDull  -bottom-5 left-[9px] px-2'>{ss} c</Box>
