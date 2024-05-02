@@ -8,8 +8,6 @@ import { IMyCard } from '../store/type';
 import HoverSlider from './HoverSlider';
 
 
-
-
 export function MyCard({ card, isStock }: { card: IMyCard, isStock?: boolean }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
