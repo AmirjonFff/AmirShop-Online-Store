@@ -13,7 +13,7 @@ export default function MySwiper() {
     const navigate = useNavigate();
 
     return (
-        <div className='h-[500px]'>
+        <div className='h-[300px] md:h-[400px] lg:h-[500px]'>
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}
