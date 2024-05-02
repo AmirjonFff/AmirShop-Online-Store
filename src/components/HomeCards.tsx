@@ -31,7 +31,7 @@ function HomeCards({ isStac }: { isStac?: boolean }) {
                     <Title size={30}>Таких товаров нет</Title>
                     <Button onClick={() => navigate('/')} color="#3a539d">Перейти на главную</Button>
                 </Box> :
-                <Box className={`w-full grid mt-10 ${(isCategor && pathname !== '/stock') ? 'grid-cols-3 md:gap-x-9 grid-rows-3 gap-x-4' : 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 md:gap-x-9 gap-x-4'} gap-y-12`}>
+                <Box className={`w-full grid mt-10 ${(isCategor && pathname !== '/stock') ? 'grid-cols-3 md:gap-x-9 grid-rows-3 gap-x-4' : 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:gap-x-9 gap-x-4'} gap-y-12`}>
                     {isLoading ?
                         [...new Array(8)].map((_, i) =>
                             <Box key={i} className="w-full">

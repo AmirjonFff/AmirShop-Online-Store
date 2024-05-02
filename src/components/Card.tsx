@@ -1,10 +1,10 @@
 import { Box, Button, Card, Group, Image, Text } from '@mantine/core';
-import { IconArrowLeftFromArc, IconArrowRightFromArc, IconArrowUpRight, IconArrowUpRightCircle, IconArrowsUpRight, IconBasket } from '@tabler/icons-react';
+import { IconArrowUpRight, IconBasket } from '@tabler/icons-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addToCart } from '../store/slice/cart';
-import { IMyCard } from '../store/type';
 import { RootState } from '../store/store';
+import { IMyCard } from '../store/type';
 import HoverSlider from './HoverSlider';
 
 
@@ -40,7 +40,7 @@ export function MyCard({ card, isStock }: { card: IMyCard, isStock?: boolean }) 
             </Group>
             <Button disabled={isGal(card.id)} className='relative hidden md:block addOrderBtn' onClick={() => handleAddToCart(card)} leftSection={<IconBasket size={20} />} color="#3a539d" fullWidth mt="auto" radius="md"> В корзину {isGal(card.id) && <Box className='absolute right-3 -bottom-[3px]' w={50}><Image src={'image/home/галочка.png'} /></Box>}
             </Button>
-            <Group className='flex md:hidden justify-center gap-5'>
+            <Group mt={'auto'} className='flex md:hidden justify-center gap-5'>
                 <IconArrowUpRight size={23} />
                 <IconBasket size={23} />
             </Group>
