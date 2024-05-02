@@ -57,7 +57,7 @@ export function Footer() {
         ));
 
         return (
-            <Stack gap={0} className="w-[150px]" key={group.title}>
+            <Stack gap={0} className={` ${group.title !== 'Контакты' && 'hidden md:block'} w-[150px]`} key={group.title}>
                 <Text className={classes.title}>{group.title}</Text>
                 {links}
             </Stack>
@@ -68,7 +68,7 @@ export function Footer() {
         <Box className='border-t'>
             <Container className={classes.footer} size={1200}>
                 <Box className={`${classes.inner} border-[#3a539d84] border-t-[1px]`}>
-                    <Stack gap={0} className={classes.logo}>
+                    <Stack gap={0} className={`${classes.logo} hidden sm:block`}>
                         <Box className="cursor-pointer text-xl font-bold mb-4">
                             <Logo />
                         </Box>

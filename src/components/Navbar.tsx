@@ -15,9 +15,7 @@ interface IHeadroom {
 
 export function Headroom({ children }: IHeadroom) {
 
-
   const pinned = useHeadroom({ fixedAt: 120 });
-
   const location = useLocation();
   const isActive = location.pathname;
   const navigate = useNavigate();
@@ -51,7 +49,7 @@ export function Headroom({ children }: IHeadroom) {
 
   return (
     <AppShell header={{ height: 77, collapsed: !pinned, offset: false }} padding="md">
-      <AppShell.Header>
+      <AppShell.Header className='hidden md:block'>
         <Container className='w-full' size="1200px">
           <Group className="flex justify-between items-center border-b border-[#3a539d84] py-6">
             <Box className="cursor-pointer text-xl font-bold">

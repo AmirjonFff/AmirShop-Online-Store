@@ -26,10 +26,11 @@
   padding-bottom: calc(var(--mantine-spacing-xl) * 1.2);
   display: flex;
   justify-content: space-between;
+  align-items: start;
 
-  @media (max-width: --mantine-breakpoint-sm) {
+  @media (max-width: 320px) {
+    gap: 10px;
     flex-direction: column;
-    align-items: center;
   }
 }
 

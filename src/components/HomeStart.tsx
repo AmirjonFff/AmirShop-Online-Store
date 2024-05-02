@@ -7,9 +7,9 @@ function HomeStart() {
     return (
         <div className='bg-colDull mt-5'>
             <Grid justify="center">
-                <Grid.Col span={6} className='flex flex-col items-start justify-center pl-6'>
+                <Grid.Col span={6} className='flex  flex-col items-start justify-center pl-6'>
                     <h3 className='#3D3D3D uppercase text-[14px]'>ДОБРО ПОЖАЛОВАТЬ В AMIRSHOP</h3>
-                    <h1 className='text-[#3D3D3D] font-[800] text-[70px] leading-tight uppercase my-3'>
+                    <h1 className='text-[#3D3D3D] text-[40px] font-[800] md:text-[70px] leading-tight uppercase my-3'>
                         Let’s Make a
                         Better <span className='text-[#3a539d]'>Planet</span>
                     </h1>
@@ -18,7 +18,7 @@ function HomeStart() {
                         Купить сейчас
                     </Button>
                 </Grid.Col>
-                <Grid.Col span={6}>
+                <Grid.Col className='hidden sm:block' span={6}>
                     <MySwiper />
                 </Grid.Col>
             </Grid>

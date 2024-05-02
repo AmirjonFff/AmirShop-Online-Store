@@ -13,7 +13,7 @@ interface IHomeBlock {
 function HomeBlock({ title, data, type, isLoading }: IHomeBlock) {
     return (
         <Box>
-            <Title mb={20} size={25}>{title}</Title>
+            <Title mb={20} className="text-[20px] md:text-[25px]">{title}</Title>
             {isLoading &&
                 <Box className="grid grid-cols-5 gap-6">
                     {[...new Array(5)].map((_, i) =>
