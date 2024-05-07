@@ -77,7 +77,7 @@ export function Headroom({ children }: IHeadroom) {
             </Group>
           </Container>
         </AppShell.Header>
-        <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`}>
+        <AppShell.Main px={0} pt={`calc(${rem(60)} + var(--mantine-spacing-md))`}>
           {
             children
           }
