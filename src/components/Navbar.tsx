@@ -91,10 +91,10 @@ export function Headroom({ children }: IHeadroom) {
           <Link to='/about' className='w-[32px]'>
             <Image src='image/home/about.png' />
           </Link>
-          <Link to='/shop' className='w-[32px]'>
+          <Link to='/stock' className='w-[32px]'>
             <Image src='image/home/acs.png' />
           </Link>
-          <Link to='/stock' className='w-[32px]'>
+          <Link to='/shop' className='w-[32px]'>
             <Image src='image/home/shop3.png' />
           </Link>
         </Box>

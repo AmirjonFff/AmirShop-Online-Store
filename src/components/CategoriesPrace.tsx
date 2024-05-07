@@ -33,7 +33,7 @@ function CategoriesPrice() {
             <Box className='text-[15px]'>
                 Цена: <Text className='text-colLight font-[700] inline'>${priceValue[0]} - ${priceValue[1]}</Text>
             </Box>
-            <Button className='mt-6 rounded-[6px] bg-colLight text-white text-[16px]'>Фильтр</Button>
+            <Button className='mt-6 rounded-[6px] bg-colLight text-white text-[12px] sm:text-[16px]'>Фильтр</Button>
         </Box>
     )
 }
