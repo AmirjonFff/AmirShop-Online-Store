@@ -19,7 +19,7 @@ function CategoriesColor() {
         <div>
             {
                 item.map((el, i) =>
-                    <div key={i} className={`flex justify-between text-[15px] font-[400] ${active && "text-colLight font-[700]"} leading-[20px] p-3 cursor-pointer`}>
+                    <div key={i} className={`flex justify-between text-[15px] font-[400] ${active && "text-colLight font-[700]"} leading-[20px] px-3 py-[6px] cursor-pointer`}>
                         <span>{el.title}</span>
                         <span>({el.quantity})</span>
                     </div>)

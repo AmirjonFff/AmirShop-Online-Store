@@ -12,9 +12,9 @@ function Categories() {
             <Stack gap={0} className='p-[14px_18px] text-[18px]'>
                 <Text className='font-[700]'>Категории</Text>
                 <CategoriesName />
-                <Text className='font-[700]'>Ценовой диапазон</Text>
+                <Text className='font-[700] mt-2'>Ценовой диапазон</Text>
                 <CategoriesPrice />
-                <Text className='font-[700]'>Выбор цвета</Text>
+                <Text className='font-[700] mt-2'>Выбор цвета</Text>
                 <CategoriesColor />
                 <Text className='font-[700] block mt-2 mb-5'>Скидки</Text>
                 <MySwiperDis />

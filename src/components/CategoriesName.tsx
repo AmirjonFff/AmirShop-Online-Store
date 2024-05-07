@@ -1,3 +1,4 @@
+import { Stack } from '@mantine/core';
 import { useSelector } from 'react-redux';
 import { useGetCategoriesQuery } from '../store/api/device';
 import CategoriesItem from './CategoriesItem';
@@ -9,11 +10,11 @@ function CategoriesName() {
     console.log(data);
 
     return (
-        <div>
+        <Stack gap={12}>
             {
-                data.map((el) => <CategoriesItem key={el.id} active={el.id === categoryId} data={el} />)
+                data.slice(0, 14).map((el) => <CategoriesItem key={el.id} active={el.id === categoryId} data={el} />)
             }
-        </div>
+        </Stack>
     )
 }
 
