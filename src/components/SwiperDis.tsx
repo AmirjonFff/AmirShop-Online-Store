@@ -12,7 +12,7 @@ import { Box, Image } from '@mantine/core';
 
 export default function MySwiperDis() {
     return (
-        <Box className='h-[400px]'>
+        <Box className='h-[400px] hidden sm:block'>
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}

@@ -22,8 +22,8 @@ function CategoriesItem({ data, active }: ICategoriesItem) {
 
     return (
         <Box onClick={() => dispatch(handleCategoryId(data?.id))} className={`flex justify-between text-[15px] font-[400] hover:text-colLight leading-[20px] px-3 cursor-pointer`}>
-            <Text className={`${active && "text-colLight font-[700]"}`}>{data?.name}</Text>
-            <Text className={`${active && "text-colLight font-[700]"}`}>({cntProduct(data?.id)})</Text>
+            <Text className={`${active && "text-colLight font-[700]"} text-[14px] sm:text-[16px]`}>{data?.name}</Text>
+            <Text className={`${active && "text-colLight font-[700]"} hidden sm:block`}>({cntProduct(data?.id)})</Text>
         </Box>
     )
 }
