@@ -31,10 +31,13 @@ export function SexTab() {
 
     return (
         <Box className='flex justify-between'>
-            <Button onClick={tagleIcon} leftSection={isCategor ? <IconX size={18} /> : <IconMenu2 size={18} />} variant="default">
+            <Box onClick={tagleIcon} className='border-2 py-1 sm:hidden rounded-[4px] mr-3 px-3'>
+                {isCategor ? <IconX /> : <IconMenu2 />}
+            </Box>
+            <Button onClick={tagleIcon} className='hidden sm:block' leftSection={isCategor ? <IconX size={18} /> : <IconMenu2 size={18} />} variant="default">
                 Каталог товаров
             </Button>
-            <Tabs className='w-[74%]' defaultValue="first" value={activeTab} onChange={setActiveTab}>
+            <Tabs className='w-full sm:w-[74%]' defaultValue="first" value={activeTab} onChange={setActiveTab}>
                 <Tabs.List grow className='w-full' justify="center">
                     {sexTab.map(sex => {
                         return <Tabs.Tab onClick={() => sex.pos === 'first' && dispach(handleCategoryId(0))} className={`${activeTab === sex.pos && "border-colLight font-bold text-colLight"}`} key={sex.pos} value={sex.pos}>{sex.name}</Tabs.Tab>
