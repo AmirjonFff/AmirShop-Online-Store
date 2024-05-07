@@ -65,7 +65,7 @@ export function Footer() {
     });
 
     return (
-        <Box className='border-t'>
+        <Box className='border-t hidden sm:block'>
             <Container className={classes.footer} size={1200}>
                 <Box className={`${classes.inner} border-[#3a539d84] border-t-[1px]`}>
                     <Stack gap={0} className={`${classes.logo} hidden sm:block`}>
