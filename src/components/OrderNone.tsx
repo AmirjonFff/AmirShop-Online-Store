@@ -5,8 +5,8 @@ function OrderNone() {
     const navigate = useNavigate()
     return (
         <Container className="flex flex-col items-center">
-            <Box w={450}>
-                <Image src={'image/home/cart.png'} />
+            <Box className="">
+                <Image  src={'image/home/cart.png'} />
             </Box>
             <Title size={25}>В корзине нет товаров
             </Title>
