@@ -26,7 +26,7 @@ export function MyCard({ card, isStock }: { card: IMyCard, isStock?: boolean }) 
             <Card.Section onClick={() => navigate('/device/' + card.id)} className='flex h-[200px] md:h-[267px] relative justify-center items-center bg-colDull'>
                 <HoverSlider image={card.images} />
                 {isStock && <Box>
-                    <Box className='absolute text-[13px] line-through text-slate-500 bg-colDull  -bottom-5 left-[9px] px-2'>{ss} c</Box>
+                    <Box className='absolute text-[13px] line-through text-slate-500 bg-colDull -bottom-5 left-[9px] px-2'>{ss} c</Box>
                     <Box className='absolute text-[14px] w-[100px] bg-colLight -rotate-[55deg] h-[100px] text-white   -top-16 -right-12 px-2'></Box>
                     <Text className='absolute text-[14px] text-white   top-[1px] -right-1 px-2'>-30 %</Text>
                 </Box>
@@ -40,8 +40,12 @@ export function MyCard({ card, isStock }: { card: IMyCard, isStock?: boolean }) 
             <Button disabled={isGal(card.id)} className='relative hidden md:block addOrderBtn' onClick={() => handleAddToCart(card)} leftSection={<IconBasket size={20} />} color="#3a539d" fullWidth mt="auto" radius="md"> В корзину {isGal(card.id) && <Box className='absolute right-3 -bottom-[3px]' w={50}><Image src={'image/home/галочка.png'} /></Box>}
             </Button>
             <Group mt={'auto'} className='flex md:hidden justify-center gap-5'>
-                <IconArrowUpRight size={23} />
-                <IconBasket size={23} />
+                <Button onClick={() => navigate('/device/' + card.id)} className='p-0 border-none' variant='default'>
+                    <IconArrowUpRight size={23} />
+                </Button>
+                <Button disabled={isGal(card.id)} onClick={() => handleAddToCart(card)} className='p-0 border-none addOrderIcon' variant='default'>
+                    <IconBasket size={23} />
+                </Button>
             </Group>
         </Card>
     );

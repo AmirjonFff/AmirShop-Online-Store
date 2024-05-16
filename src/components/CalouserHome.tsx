@@ -39,7 +39,7 @@ export function CalouserHome({ data }: ICalouserHome) {
                 {
                     data?.map(el =>
                         <Carousel.Slide key={el.id}>
-                            <Box my={10} className='md:h-[380px] sm:ml-2 md:w-[250px] h-[300px] w-[200px]'>
+                            <Box my={10} className='md:h-[380px] mx-2 sm:mx-0 md:w-[250px] h-[300px] w-[200px]'>
                                 <MyCard card={el} />
                             </Box>
                         </Carousel.Slide>

@@ -28,7 +28,6 @@
   &:disabled {
     background-color: #6b80c0;
     cursor: not-allowed;
-    /* Другие стили для отключенной кнопки */
   }
 }
 
@@ -36,7 +35,13 @@
   &:disabled {
     background-color: #3a539d;
     cursor: not-allowed;
-    /* Другие стили для отключенной кнопки */
+  }
+
+}
+.addOrderIcon {
+  &:disabled {
+    background-color: transparent;
+    cursor: not-allowed;
   }
 
 }

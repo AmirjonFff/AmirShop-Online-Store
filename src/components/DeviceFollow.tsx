@@ -58,7 +58,7 @@ function DeviceFollow({ data, isLoading }: { data: IMyCard | undefined, isLoadin
                     <SizeDevice />
                     <Box className="flex gap-5 items-center mt-5">
                         <HandleQuantity quantity={newData?.cartQuantity ? newData?.cartQuantity : 1} increment={increment} decrement={decrement} />
-                        <Button disabled={isGal(data?.id)} onClick={() => handleAddToCart(data)} color="#3a539d">В КАРЗИНУ</Button>
+                        <Button disabled={isGal(data?.id)} onClick={() => handleAddToCart(data)} color="#3a539d" className="text-xs sm:text-sm">В КАРЗИНУ</Button>
                         <OrderModal oplata={oplata} bool={true} />
                     </Box>
                     <Box className="flex items-center mt-5 gap-2"> <Title className="text-[17px]">Категории: </Title> <span className="text-[15px] text-[#727272]">{data?.category.name}</span> </Box>

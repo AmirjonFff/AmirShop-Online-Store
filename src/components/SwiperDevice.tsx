@@ -4,6 +4,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation } from 'swiper/modules';
 import { useState, useEffect } from 'react';
+import { Box } from '@mantine/core';
 
 interface ImySwiperDevice {
     images: string[] | undefined;
@@ -30,17 +31,17 @@ export default function MySwiperDevice({ images }: ImySwiperDevice) {
     };
 
     return (
-        <div className='w-[570px] flex gap-5 items-start'>
-            <div className='w-[100px] flex flex-col gap-4'>
+        <Box className='sm:w-[570px] flex gap-5 items-start flex-col sm:flex-row'>
+            <Box className='flex sm:flex-col gap-4 order-1 sm:order-none w-full'>
                 {
                     images?.map((img, i) =>
-                        <div key={i} className={`${i === tab && "outline-colLight outline outline-2"} w-[100px] h-[100px] bg-colDull`} onClick={() => handleTabClick(i)} >
+                        <Box key={i} className={`${i === tab && "outline-colLight outline outline-2"} w-[100px] h-[100px] bg-colDull`} onClick={() => handleTabClick(i)} >
                             <img className='w-full h-[100%]' src={img} alt="" />
-                        </div>
+                        </Box>
                     )
                 }
-            </div>
-            <div className='h-[450px] w-[450px] bg-colDull'>
+            </Box>
+            <Box className='w-full h-[45vh] sm:h-[450px] sm:w-[450px] bg-colDull'>
                 <Swiper
                     spaceBetween={30}
                     centeredSlides={true}
@@ -59,7 +60,7 @@ export default function MySwiperDevice({ images }: ImySwiperDevice) {
                         )
                     }
                 </Swiper>
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
 }

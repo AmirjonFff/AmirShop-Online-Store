@@ -1,4 +1,4 @@
-import { AppShell, Box, Container, Group, Image, UnstyledButton, rem } from '@mantine/core';
+import { AppShell, Box, Container, Group, UnstyledButton, rem } from '@mantine/core';
 import { useHeadroom } from '@mantine/hooks';
 import { IconHome, IconShoppingCart } from '@tabler/icons-react';
 import { useEffect } from 'react';
@@ -89,13 +89,13 @@ export function Headroom({ children }: IHeadroom) {
             <IconHome size={32} />
           </Link>
           <Link to='/about' className='w-[32px]'>
-            <Image src='image/home/about.png' />
+            <img src='image/home/about.png' />
           </Link>
           <Link to='/stock' className='w-[32px]'>
-            <Image src='image/home/acs.png' />
+            <img src='image/home/acs.png' />
           </Link>
           <Link to='/shop' className='w-[32px]'>
-            <Image src='image/home/shop3.png' />
+            <img src='image/home/shop3.png' />
           </Link>
         </Box>
       </Container>

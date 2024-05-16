@@ -67,7 +67,7 @@ export function OrderModal({ oplata, bool }: { oplata: number | undefined, bool?
                     </Button>
                 </form>
             </Modal>
-            <Button onClick={open} variant={bool ? 'default' : ''} className={`${bool && 'border-colLight text-colLight -ml-2'}`} color="#3a539d" h={!bool ? 40 : 37}>{bool ? 'КУПИТ СЕЙЧАС' : 'Перейти к оформлению'}</Button>
+            <Button onClick={open} variant={bool ? 'default' : ''} className={`text-xs sm:text-sm ${bool && 'border-colLight text-colLight -ml-2'}`} color="#3a539d" h={!bool ? 40 : 37}>{bool ? 'КУПИТ СЕЙЧАС' : 'Перейти к оформлению'}</Button>
         </>
     );
 }
